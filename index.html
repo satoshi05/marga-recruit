@@ -1,0 +1,2753 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>株式会社マルガジャパン 採用LP</title>
+  <meta name="description" content="株式会社マルガジャパン採用LP。未開の地へ、一緒に行くか？" />
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --white:#ffffff;
+      --text:#0f172a;
+      --muted:#546277;
+      --line:#d6deea;
+
+      --navy:#244a87;
+      --navy-deep:#193968;
+      --navy-2:#12345f;
+      --navy-soft:#2d5ca4;
+
+      --accent:#eca238;
+      --accent-deep:#d98a14;
+      --accent-soft:#fff3de;
+
+      --blue-soft:#eef6ff;
+      --beige:#fff7eb;
+
+      --shadow:0 18px 48px rgba(15,23,42,.12);
+      --shadow-soft:0 10px 24px rgba(15,23,42,.09);
+
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:16px;
+
+      --max:1240px;
+      --header-h:86px;
+      --hero-overlap:clamp(44px, 6vw, 88px);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+
+    .inner,
+    .wrap{
+      width:100%;
+      padding-right:10vw;
+      padding-left:10vw;
+      box-sizing:border-box;
+      margin:0 auto;
+      position:relative;
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(214,222,234,.9);
+    }
+    .header__inner{
+      min-height:var(--header-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:900;
+      color:var(--navy);
+    }
+    .brand__mark{
+      width:54px;
+      height:54px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:#fff;
+      font-size:22px;
+      line-height:1;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+    .brand__text{
+      font-size:18px;
+      letter-spacing:.02em;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      color:#314a6b;
+      transition:.2s ease;
+    }
+    .nav a:hover{
+      background:#edf4ff;
+      color:var(--navy);
+    }
+    .nav-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border:none;
+      border-radius:14px;
+      background:linear-gradient(180deg, #2d5ca4 0%, #193968 100%);
+      box-shadow:0 8px 22px rgba(25,57,104,.22);
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+    .nav-toggle__bar,
+    .nav-toggle__bar::before,
+    .nav-toggle__bar::after{
+      display:block;
+      width:20px;
+      height:2px;
+      border-radius:999px;
+      background:#fff;
+      position:relative;
+      transition:transform .24s ease, opacity .24s ease;
+      content:"";
+    }
+    .nav-toggle__bar::before{position:absolute; top:-6px; left:0;}
+    .nav-toggle__bar::after{position:absolute; top:6px; left:0;}
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar{background:transparent;}
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar::before{top:0; transform:rotate(45deg);}
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar::after{top:0; transform:rotate(-45deg);}
+
+    .section{
+      position:relative;
+      padding:108px 0;
+      overflow:hidden;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 16px;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.14em;
+      color:#dce8ff;
+      text-transform:uppercase;
+    }
+    .eyebrow--dark{color:var(--navy)}
+    .eyebrow--dark::before{box-shadow:0 0 0 6px rgba(36,74,135,.08)}
+
+    .title{
+      margin:0;
+      font-size:clamp(32px,4vw,64px);
+      line-height:1.08;
+      letter-spacing:.01em;
+    }
+    .title-md{
+      margin:0;
+      font-size:clamp(26px,3vw,42px);
+      line-height:1.15;
+    }
+    .lead{
+      margin:16px 0 0;
+      font-size:clamp(15px,1.35vw,20px);
+      color:var(--muted);
+    }
+
+    .btn-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:15px 26px;
+      font-size:15px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn--primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(236,162,56,.28);
+    }
+    .btn--ghost{
+      background:rgba(255,255,255,.86);
+      color:var(--navy);
+      border:1px solid rgba(214,222,234,.95);
+      backdrop-filter:blur(8px);
+    }
+    .btn--line{
+      background:#fff;
+      color:var(--navy);
+      border:1px solid #cfd8e7;
+    }
+
+    /* HERO */
+    /* v13: hero only tuned. keep existing structure and avoid broad CSS side effects. */
+    .hero{
+      padding:0;
+      background:#dfeeff;
+    }
+    .hero__stage{
+      position:relative;
+      min-height:0;
+      max-height:none;
+      overflow:hidden;
+      background:linear-gradient(180deg, #dff1ff 0%, #a8d1ff 40%, #76a7dc 100%);
+    }
+    .hero__bg{
+      position:absolute;
+      inset:0;
+      z-index:3;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .hero__bg img{
+      width:100%;
+      height:auto;
+      min-height:0;
+      max-height:none;
+      object-fit:contain;
+      object-position:center bottom;
+      filter:saturate(1.02);
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      top:auto;
+      z-index:8;
+      display:block;
+    }
+    .hero__shade{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, #dff1ff 0%, #b7d8ff 48%, #5d87c6 100%);
+      z-index:1;
+      pointer-events:none;
+    }
+    .hero__inner{
+      position:relative;
+      z-index:5;
+      height:100%;
+      min-height:100%;
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-end;
+      padding:clamp(72px, 10vw, 136px) 0 clamp(84px, 8vw, 124px);
+    }
+    .hero__card{
+      .hero__card{width:min(500px, 44vw)}
+      max-width:100%;
+      padding:0;
+      border-radius:0;
+      background:none;
+      border:none;
+      box-shadow:none;
+      backdrop-filter:none;
+      color:#fff;
+      margin-left:auto;
+      margin-top:clamp(18px, 4vw, 56px);
+      text-align:left;
+    }
+    .hero__card .title{display:none}
+    .hero__card .lead{display:none}
+    .hero__card .btn-row{margin-top:26px}
+    .hero__eyebrow{
+      display:block;
+      margin:0 0 16px;
+      color:#fff;
+      text-shadow:0 8px 24px rgba(31,58,114,.42);
+    }
+    .hero__peek{display:none}
+
+    .hero__title{
+      margin:0;
+      display:grid;
+      gap:.08em;
+      color:#fff;
+      text-shadow:0 10px 22px rgba(37,74,135,.58);
+      font-weight:900;
+      font-size:clamp(28px, 4vw, 70px);
+      line-height:1.08;
+      width:min(100%, 520px);
+      max-width:100%;
+      justify-items:start;
+    }
+    .hero__title-line{
+      display:block;
+      white-space:nowrap;
+      width:100%;
+      max-width:100%;
+    }
+    .hero__mission{
+      display:grid;
+      grid-template-columns:clamp(38px, 3vw, 50px) minmax(0, 1fr);
+      align-items:center;
+      gap:14px;
+      margin:18px 0 0;
+      width:100%;
+      max-width:100%;
+    }
+    .hero__mission-gif{
+      width:clamp(38px, 3vw, 50px);
+      height:clamp(38px, 3vw, 50px);
+      flex:0 0 auto;
+      filter:drop-shadow(0 10px 20px rgba(24,53,102,.16));
+    }
+    .hero__mission-copy{
+      position:relative;
+      display:flex;
+      align-items:center;
+      width:30vw;
+      min-width:0;
+      min-height:44px;
+      padding:10px clamp(42px, 4vw, 52px) 10px clamp(18px, 2vw, 26px);
+      background:#fff;
+      color:#111827;
+      font-size:clamp(17px, 1.45vw, 22px);
+      font-weight:900;
+      line-height:1.2;
+      white-space:nowrap;
+      clip-path:polygon(0 0, calc(100% - 44px) 0, 100% 50%, calc(100% - 44px) 100%, 0 100%);
+      box-shadow:0 14px 28px rgba(24,53,102,.14);
+    }
+    .floating-captain,
+    .floating-entry{
+      position:fixed;
+      z-index:80;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(12px);
+      transition:opacity .35s ease, transform .35s ease;
+    }
+    .floating-captain.is-active,
+    .floating-entry.is-active{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+    .floating-captain{
+  position:fixed;
+  z-index:80;
+  opacity:0;
+  pointer-events:none;
+
+  left:max(12px, calc((100vw - 1000px) / 2 - 72px));
+  top:80svh;
+  bottom:auto;
+
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  font-size:clamp(34px, 5vw, 72px);
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.02em;
+  color:#ffffff;
+  text-shadow:0 10px 28px rgba(17,37,70,.18);
+
+  transform:translateY(12px) rotate(180deg);
+  transform-origin:top center;
+  transition:opacity .35s ease, transform .35s ease;
+      left: 10px;
+}
+
+.floating-captain.is-active{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0) rotate(180deg);
+}
+    .floating-captain.is-dark{
+      color:#254A87;
+      text-shadow:none;
+    }
+    .floating-captain.is-light{
+      color:#ffffff;
+      text-shadow:0 10px 28px rgba(17,37,70,.18);
+    }
+    .floating-entry{
+      top:54%;
+      right:max(12px, calc((100vw - 1160px) / 2 - 72px));
+      width:clamp(180px, 14vw, 240px);
+      height:auto;
+      border:none;
+      background:none;
+      padding:0;
+    }
+    .floating-entry img{
+      width:100%;
+      height:auto;
+      display:block;
+      filter:drop-shadow(0 18px 32px rgba(17,37,70,.28));
+    }
+    .floating-captain.is-fading,
+    .floating-entry.is-fading{
+      opacity:0 !important;
+      pointer-events:none !important;
+      transform:translateY(12px) !important;
+    }
+
+    /* CAPTAIN */
+    .captain{
+      position:relative;
+      z-index:3;
+      margin-top:calc(var(--hero-overlap) * -1);
+      padding-top:calc(108px + var(--hero-overlap));
+      background:
+        radial-gradient(circle at 50% 10%, rgba(127,166,230,.18) 0%, rgba(127,166,230,0) 26%),
+        radial-gradient(circle at 50% 100%, rgba(77,127,203,.18) 0%, rgba(77,127,203,0) 34%),
+        linear-gradient(180deg, #335f9a 0%, #23467f 22%, #183664 56%, #112b57 100%);
+      color:#fff;
+      box-shadow:inset 0 28px 42px rgba(255,255,255,.05), inset 0 -40px 64px rgba(7,20,45,.18);
+    }
+    .captain::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-1px;
+      height:54px;
+      background:linear-gradient(180deg, rgba(36,74,135,0) 0%, rgba(50,97,159,.45) 58%, rgba(58,102,164,.86) 100%);
+      filter:blur(10px);
+      pointer-events:none;
+      z-index:1;
+    }
+    .captain .wrap{position:relative; z-index:2;}
+    .captain__shell{
+      position:relative;
+      padding-left:0;
+    }
+    .captain__rail{display:none}
+    .captain__rail span{
+      writing-mode:vertical-rl;
+      text-orientation:mixed;
+      font-size:72px;
+      line-height:1;
+      font-weight:900;
+      color:#fff;
+      opacity:.98;
+      transform:rotate(180deg);
+      letter-spacing:.02em;
+      margin-top:18px;
+    }
+    .captain__head{
+      padding-top:8px;
+      max-width:420px;
+      position:relative;
+      z-index:4;
+    }
+    .captain__name{
+      margin:0;
+      font-size:clamp(28px,4vw,64px);
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.03em;
+    }
+    .captain__role{
+      margin:18px 0 0;
+      font-size:clamp(18px,2vw,28px);
+      color:#cfe0ff;
+      font-weight:800;
+          text-shadow: 1px 1px #112b57;
+    }
+    .captain__plus{
+      margin-top:12px;
+      width:108px;
+      height:108px;
+      border-radius:999px;
+      border:none;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      color:var(--navy);
+      font-size:72px;
+      font-weight:400;
+      line-height:1;
+      cursor:pointer;
+      box-shadow:var(--shadow-soft);
+      padding:0;
+    }
+
+    .captain__scene{
+      position:relative;
+      height:clamp(500px, 58vw, 760px);
+      margin-top:-30vw;
+    }
+
+    .captain__person{
+      position:absolute;
+      left:50%;
+      top:58%;
+      bottom:auto;
+      transform:translate(-50%, -50%) scale(.98);
+      width:min(360px, 34vw);
+      opacity:0;
+      transition:opacity .9s ease, transform .9s ease;
+      z-index:2;
+      filter:drop-shadow(0 18px 26px rgba(0,0,0,.12));
+    }
+
+    .captain__textimg {
+      position:absolute;
+      left:50%;
+      top:45%;
+      transform:translate(-50%, -50%);
+      width:min(900px, 82%);
+      opacity:0;
+      transition:opacity .9s ease .55s, transform .9s ease .55s;
+      z-index:3;
+      pointer-events:none;
+    }
+
+    .captain__scene.is-in .captain__person{
+      opacity:1;
+      transform:translate(-50%, -50%) scale(1);
+    }
+    .captain__scene.is-in .captain__textimg{
+      opacity:1;
+      transform:translate(-50%, -50%);
+    }
+
+    .captain__cta{display:none}
+
+    .captain__cards{
+      display:none;
+      margin-top:30px;
+      gap:14px;
+      position:relative;
+      z-index:4;
+    }
+    .captain__card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:20px;
+      padding:18px 16px;
+      backdrop-filter:blur(8px);
+    }
+    .captain__card b{
+      display:block;
+      margin-bottom:8px;
+      font-size:16px;
+    }
+    .captain__card p{
+      margin:0;
+      color:#dbe8ff;
+      font-size:14px;
+    }
+
+    /* VALUES */
+    .values{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(122,165,228,.16) 0%, rgba(122,165,228,0) 24%),
+        linear-gradient(180deg, #173868 0%, #214b86 26%, #3a67a4 72%, #6c95c9 100%);
+      color:#fff;
+      margin-top:-2px;
+      position:relative;
+    }
+    .values::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-1px;
+      height:72px;
+      background:linear-gradient(180deg, rgba(108,149,201,0) 0%, rgba(126,167,218,.38) 38%, rgba(192,221,244,.66) 72%, rgba(235,245,255,.92) 100%);
+      filter:blur(12px);
+      pointer-events:none;
+      z-index:1;
+    }
+    .values .wrap{position:relative; z-index:2;}
+    .values__intro{
+      max-width:760px;
+      margin-bottom:34px;
+    }
+    .values__intro .lead{color:#d8e7ff}
+    .values__grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:22px;
+    }
+    .value-card{
+      position:relative;
+      min-height:320px;
+      padding:34px 28px 36px;
+      border-radius:26px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .value-card__bgman{
+      position:absolute;
+      right:18px;
+      bottom:16px;
+      width:clamp(110px, 15vw, 168px);
+      height:auto;
+      object-fit:contain;
+      z-index:0;
+      opacity:.9;
+      pointer-events:none;
+    }
+    .value-card__num{
+      position:absolute;
+      right:18px;
+      bottom:8px;
+      font-size:clamp(96px,10vw,180px);
+      font-weight:900;
+      line-height:1;
+      color:rgba(255,255,255,.16);
+      pointer-events:none;
+      z-index:1;
+    }
+    .value-card__track{
+      position:relative;
+      z-index:3;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+      max-width:calc(100% - clamp(140px, 25vw, 300px));
+    }
+    .value-card__line{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      width:100%;
+      flex-wrap:nowrap;
+    }
+    .value-card__line--v{
+      flex-wrap:nowrap;
+    }
+    .chip-h,
+    .chip-v,
+    .body-h,
+    .body-v{
+      color:#fff;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+    .chip-h,
+    .body-h{
+      display:inline-block;
+      padding:6px 10px;
+      line-height:1.35;
+    }
+    .chip-h{background:#f0b315;color:#fff}
+    .body-h{background:#0f3564}
+    .chip-v,
+    .body-v{
+      writing-mode:vertical-rl;
+      text-orientation:mixed;
+      padding:10px 8px;
+      line-height:1.25;
+      display:inline-flex;
+      align-items:flex-start;
+    }
+    .chip-v{background:#f0b315}
+    .body-v{background:#0f3564}
+
+    /* PHILOSOPHY */
+    .philosophy{
+      padding:0;
+      background:#fff;
+      position:relative;
+    }
+    .philosophy::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:-34px;
+      height:68px;
+      background:linear-gradient(180deg, rgba(142,184,228,.88) 0%, rgba(201,226,246,.48) 52%, rgba(255,255,255,0) 100%);
+      filter:blur(14px);
+      z-index:4;
+      pointer-events:none;
+    }
+    .philosophy__visual{
+      position:relative;
+      min-height:600px;
+      overflow:hidden;
+    }
+    .philosophy__bg{
+      position:absolute;
+      inset:0;
+      z-index:1;
+    }
+    .philosophy__bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+    }
+    .philosophy__shade{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.05) 22%, rgba(255,255,255,0) 44%, rgba(255,255,255,.10) 100%);
+      z-index:2;
+    }
+    .philosophy__inner{
+      position:relative;
+      z-index:3;
+      min-height:600px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:88px 0 90px;
+    }
+    .philosophy__card{
+      width:min(760px, 92vw);
+      padding:0;
+      border-radius:0;
+      background:transparent;
+      backdrop-filter:none;
+      border:none;
+      box-shadow:none;
+      text-align:center;
+      color:#fff;
+      text-shadow:0 12px 28px rgba(77,76,168,.34), 0 0 18px rgba(77,76,168,.18);
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .philosophy__card.is-in{opacity:1; transform:translateY(0)}
+    .philosophy__card .eyebrow,
+    .philosophy__card .title-md,
+    .philosophy__card .lead,
+    .philosophy__copy,
+    .philosophy__big{
+      color:#fff;
+      text-shadow:0 10px 30px rgba(60,58,152,.42), 0 0 12px rgba(60,58,152,.22);
+    }
+    .philosophy__card .eyebrow{justify-content:center;}
+    .philosophy__card .lead{margin-top:18px;color:#fff;font-size:clamp(16px,1.9vw,26px);line-height:1.48;font-weight:800;}
+    .philosophy__copy{margin:12px auto 0;max-width:760px;font-size:clamp(15px,1.35vw,20px);line-height:1.85;}
+    .philosophy__big{margin:10px 0 0;font-size:clamp(24px,3.7vw,48px);line-height:1.05;font-weight:900;}
+    .philosophy__list,.philosophy__item,.philosophy__icon{display:none;}
+
+    /* ROLES */
+    .roles{
+      --role-cut:clamp(42px, 5vw, 76px);
+      background:#ffffff;
+      overflow-x:clip;
+      padding-bottom:0;
+      position:relative;
+      z-index:1;
+    }
+    .roles::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:-18px;
+      height:36px;
+      background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.82) 56%, #fff 100%);
+      filter:blur(8px);
+      pointer-events:none;
+      z-index:2;
+    }
+    .roles .wrap{
+      width:100%;
+    }
+    .roles__intro{
+      max-width:1160px;
+      margin:0 auto 28px;
+      position:relative;
+      z-index:3;
+    }
+    .roles__grid{
+      display:grid;
+      gap:0;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      overflow:visible;
+      padding-bottom:0;
+      position:relative;
+      z-index:2;
+    }
+    .role-slab{
+      position:relative;
+      overflow:visible;
+      border:none;
+      background:transparent;
+      z-index:1;
+      isolation:isolate;
+    }
+    .role-slab + .role-slab{
+      margin-top:calc(var(--role-cut) * -1 + 2px);
+    }
+    .role-slab:nth-child(2){z-index:2}
+    .role-slab:nth-child(3){z-index:3}
+    .role-slab:nth-child(4){z-index:4}
+    .role-slab__inner{
+      position:relative;
+      min-height:clamp(430px, 36vw, 560px);
+      padding-block:calc(var(--role-cut) + 20px) calc(var(--role-cut) + 20px);
+      padding-inline:10vw;
+      isolation:isolate;
+      display:grid;
+      grid-template-columns:minmax(250px, 330px) minmax(340px, 460px);
+      align-items:center;
+      justify-content:space-between;
+      gap:clamp(24px, 3vw, 48px);
+      clip-path:polygon(0 var(--role-cut), 100% 0, 100% 100%, 0 calc(100% - var(--role-cut)));
+    }
+    .role-slab:nth-child(even) .role-slab__inner{
+      grid-template-columns:minmax(340px, 460px) minmax(250px, 330px);
+      clip-path:polygon(0 0, 100% var(--role-cut), 100% calc(100% - var(--role-cut)), 0 100%);
+    }
+    .role-slab__bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      pointer-events:none;
+      transform:scale(1.02);
+    }
+    .role-slab__overlay{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.08) 32%, rgba(255,255,255,0) 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.05) 100%);
+    }
+    .role-slab:nth-child(even) .role-slab__overlay{
+      background:
+        linear-gradient(270deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.08) 32%, rgba(255,255,255,0) 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.05) 100%);
+    }
+    .role-slab__body{
+      position:relative;
+      z-index:4;
+      grid-column:1;
+      grid-row:1;
+      width:100%;
+      max-width:460px;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:14px;
+      padding:clamp(24px, 2.5vw, 34px) clamp(22px, 2.8vw, 34px);
+      margin:0;
+      align-self:center;
+      justify-self:start;
+      margin-top:0;
+    }
+    .role-slab:nth-child(even) .role-slab__body{
+      grid-column:2;
+      justify-self:end;
+    }
+    .role-slab__body::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:32px;
+      background:rgba(255,255,255,.82);
+      backdrop-filter:blur(10px);
+      box-shadow:0 14px 34px rgba(15,23,42,.08);
+      z-index:-1;
+    }
+    .role-slab__media{
+      position:relative;
+      z-index:2;
+      grid-column:2;
+      grid-row:1;
+      width:100%;
+      max-width:330px;
+      min-height:clamp(220px, 22vw, 320px);
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      pointer-events:none;
+      align-self:center;
+      justify-self:end;
+      margin:0;
+    }
+    .role-slab:nth-child(even) .role-slab__media{
+      grid-column:1;
+      justify-self:start;
+    }
+    .role-slab__avatar{
+      width:100%;
+      max-height:clamp(220px, 25vw, 360px);
+      object-fit:contain;
+      object-position:bottom center;
+      filter:drop-shadow(0 18px 28px rgba(15,23,42,.18));
+    }
+    .role-slab__tag{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(217,228,243,.98);
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.08em;
+      box-shadow:0 8px 20px rgba(15,23,42,.08);
+    }
+    .role-slab__title{
+      margin:0;
+      font-size:clamp(22px,2vw,32px);
+      line-height:1.12;
+      color:var(--navy-deep);
+      text-shadow:none;
+    }
+    .role-slab__text{
+      margin:0;
+      font-size:clamp(13px,0.95vw,16px);
+      line-height:1.75;
+      color:#243447;
+      max-width:22em;
+      text-shadow:none;
+    }
+    .role-slab__actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .role-slab__more{
+      min-width:208px;
+      padding:18px 34px;
+      font-size:17px;
+      font-weight:900;
+      color:#274f93;
+      background:#fff;
+      border:1px solid #d5deec;
+      border-radius:999px;
+      box-shadow:0 14px 30px rgba(15,23,42,.12);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .role-slab__more:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 34px rgba(15,23,42,.16);
+    }
+    .role-slab--sales .role-slab__title,
+    .role-slab--sales .role-slab__tag{color:#285c98}
+    .role-slab--develop .role-slab__title,
+    .role-slab--develop .role-slab__tag{color:#d98a14}
+    .role-slab--make .role-slab__title,
+    .role-slab--make .role-slab__tag{color:#2f8f65}
+    .role-slab--ops .role-slab__title,
+    .role-slab--ops .role-slab__tag{color:#6f55c2}
+
+    /* RECRUIT TABLE */
+    .recruit{
+      position:relative;
+      margin-top:calc(var(--role-cut) * -1 + 2px);
+      padding-top:calc(108px + var(--role-cut) + 18px);
+      background:linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+      z-index:5;
+    }
+    .recruit::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:calc(var(--role-cut) * -1);
+      height:calc(var(--role-cut) + 2px);
+      background:#f7fbff;
+      clip-path:polygon(0 var(--role-cut), 100% 0, 100% 100%, 0 100%);
+    }
+    .recruit__box{
+      border-radius:28px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #d8e4f3;
+      box-shadow:var(--shadow-soft);
+      margin-top:28px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      border-bottom:1px solid #e3eaf3;
+    }
+    .row:last-child{border-bottom:none}
+    .row__th{
+      padding:18px 22px;
+      font-size:15px;
+      font-weight:900;
+      background:#f4f8fd;
+      color:#334155;
+      border-right:1px solid #e3eaf3;
+    }
+    .row__td{
+      padding:18px 22px;
+      color:#475569;
+      font-size:15px;
+    }
+
+    /* ENTRY */
+    .entry{
+      background:#fff;
+    }
+    .entry__grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+      margin-top:28px;
+    }
+    .entry-card{
+      background:#fff;
+      border:1px solid #dbe5f2;
+      border-radius:28px;
+      box-shadow:var(--shadow-soft);
+      padding:28px 26px;
+      display:flex;
+      flex-direction:column;
+      min-height:270px;
+    }
+    .entry-card__tag{
+      display:inline-flex;
+      width:max-content;
+      padding:5px 12px;
+      border-radius:999px;
+      background:#eef4ff;
+      color:var(--navy);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      margin-bottom:14px;
+    }
+    .entry-card h3{
+      margin:0;
+      font-size:28px;
+      line-height:1.2;
+      color:var(--navy-deep);
+    }
+    .entry-card p{
+      margin:14px 0 0;
+      color:#5b687b;
+    }
+    .entry-card ol{
+      margin:16px 0 0;
+      padding-left:20px;
+      color:#475569;
+      font-size:14px;
+    }
+    .entry-card .btn-row{
+      margin-top:auto;
+      padding-top:18px;
+    }
+
+    /* WANTED */
+    .wanted{
+      background:linear-gradient(180deg, #eef6ff 0%, #e5f0fb 100%);
+    }
+    .wanted__box{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      border-radius:34px;
+      background:#fff;
+      border:1px solid #d8e4f3;
+      box-shadow:var(--shadow);
+      padding:30px;
+      margin-top:26px;
+    }
+    .wanted__poster{
+      width:250px;
+      flex:0 0 250px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .wanted__content{
+      min-width:0;
+      flex:1;
+    }
+    .wanted__content .title-md{
+      color:var(--navy-deep);
+      margin-bottom:18px;
+    }
+    .check-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+    .check-list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      font-size:clamp(16px,1.4vw,18px);
+      font-weight:800;
+      color:#1f2937;
+    }
+    .check-mark{
+      width:26px;
+      height:26px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      background:var(--accent-soft);
+      color:var(--navy);
+      font-weight:900;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+    .wanted__note{
+      margin:18px 0 0;
+      color:#5d6a7f;
+      font-size:16px;
+    }
+    .wanted__footer{
+      margin-top:24px;
+      padding-top:20px;
+      border-top:1px solid #e6edf6;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .wanted__footer strong{
+      display:block;
+      font-size:clamp(22px,2vw,30px);
+      line-height:1.2;
+      color:#172554;
+      margin-bottom:4px;
+    }
+    .wanted__footer span{
+      color:#5d6a7f;
+      font-size:16px;
+    }
+
+    /* FAQ */
+    .faq{
+      background:linear-gradient(180deg, #fffaf3 0%, #fff4e4 100%);
+    }
+    .faq__list{
+      margin-top:28px;
+      display:grid;
+      gap:12px;
+    }
+    .faq-item{
+      border-radius:20px;
+      border:1px solid #ecdab5;
+      background:#fff;
+      overflow:hidden;
+      box-shadow:var(--shadow-soft);
+    }
+    .faq-q{
+      width:100%;
+      border:none;
+      background:#fff;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:20px 22px;
+      font-size:16px;
+      font-weight:800;
+      color:#1f2937;
+      cursor:pointer;
+      text-align:left;
+    }
+    .faq-symbol{
+      font-size:24px;
+      line-height:1;
+      color:var(--navy);
+      transition:transform .2s ease;
+      flex:0 0 auto;
+    }
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease, padding .28s ease;
+      padding:0 22px;
+      color:#475569;
+      font-size:15px;
+      background:#fffaf1;
+      border-top:1px solid transparent;
+    }
+    .faq-item.is-open .faq-a{
+      max-height:220px;
+      padding:0 22px 18px;
+      border-top-color:#f0dfbf;
+    }
+    .faq-item.is-open .faq-symbol{
+      transform:rotate(45deg);
+    }
+
+    .footer{
+      padding:26px 0 38px;
+      text-align:center;
+      background:#fff;
+      color:#64748b;
+      font-size:12px;
+      border-top:1px solid #e2e8f0;
+    }
+
+    /* MODAL */
+    .modal-back{
+      position:fixed;
+      inset:0;
+      z-index:120;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      background:rgba(148,163,184,.52);
+      backdrop-filter:blur(7px);
+    }
+    .modal-back.is-open{display:flex}
+    .modal{
+      width: min(600px, 90%);
+      background:#fff;
+      border-radius:34px;
+      border:1px solid #dbe5f2;
+      box-shadow:0 30px 80px rgba(15,23,42,.22);
+      overflow:hidden;
+    }
+    .modal__head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:34px 50px;
+      background:linear-gradient(90deg, #f3ece2 0%, #eaf6ff 36%, #dff3ff 100%);
+      border-bottom:1px solid #dbe5f2;
+    }
+    .modal__head h3{
+      margin:0;
+      font-size: clamp(15px,3.8vw,30px);
+      line-height:1.2;
+      color:#111827;
+      letter-spacing:.01em;
+    }
+    .modal__close{
+      width:88px;
+      height:88px;
+      border:none;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      color:#0f172a;
+      font-size:54px;
+      font-weight:800;
+      line-height:1;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+    .modal__body{
+      padding:40px 48px 48px;
+      color:#334155;
+      font-size:20px;
+    }
+    .role-modal__lead{
+      margin:0 0 26px;
+      font-size:clamp(18px,1.5vw,24px);
+      line-height:1.9;
+      color:#334155;
+    }
+    .role-modal__grid{
+      display:grid;
+      gap:22px;
+      margin-bottom:24px;
+    }
+    .role-modal__card{
+      background:#f8fafc;
+      border:1px solid #cfd8e5;
+      border-radius:28px;
+      padding:22px 30px;
+    }
+    .role-modal__card h4{
+      margin:0 0 12px;
+      font-size:clamp(24px,2vw,36px);
+      line-height:1.2;
+      color:#111827;
+    }
+    .role-modal__card p{
+      margin:0;
+      font-size:clamp(18px,1.45vw,22px);
+      line-height:1.85;
+      color:#334155;
+    }
+    .role-modal__actions{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .role-modal__actions .btn{
+      padding:18px 34px;
+      font-size:18px;
+    }
+
+    .reveal-up{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal-up.is-in{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    
+
+    @keyframes floaty{
+      0%,100%{transform:translateX(-50%) translateY(0)}
+      50%{transform:translateX(-50%) translateY(-8px)}
+    }
+
+
+    @media (min-width:1160px){
+      /* v13: max-width fixed only from 1160px and up */
+      .inner,
+      .wrap{
+        max-width:1000px;
+        padding-right:0;
+        padding-left:0;
+      }
+      .role-slab__inner{
+        padding-inline:calc((100vw - 1160px) / 2);
+      }
+
+      
+    }
+
+    @media (max-width:1160px) {
+      .hero__card {
+        padding-right: 10vw;
+      }
+    }
+
+    @media (max-width:1100px){
+      .nav{
+        gap:2px;
+        flex-wrap:nowrap;
+        justify-content:flex-end;
+      }
+      .nav a{
+        padding:8px 8px;
+        font-size:11px;
+      }
+      .captain__textimg{width:min(860px, 78%)}
+    }
+
+    @media (max-width:800px){
+      .hero__card {
+        padding-right: initial;
+      }
+      .header__inner{
+        position:relative;
+      }
+      .nav-toggle{
+        display:inline-flex;
+      }
+      .nav{
+        position:absolute;
+        top:calc(100% + 10px);
+        right:0;
+        left:0;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:6px;
+        padding:14px;
+        border-radius:20px;
+        background:linear-gradient(180deg, rgba(45,92,164,.98) 0%, rgba(25,57,104,.98) 100%);
+        box-shadow:0 18px 34px rgba(17,37,70,.24);
+        max-width:none;
+      }
+      .nav.is-open{
+        display:flex;
+      }
+      .nav a{
+        color:#fff;
+        font-size:13px;
+        padding:10px 14px;
+        border-radius:12px;
+      }
+      .nav a:hover{
+        background:rgba(255,255,255,.12);
+        color:#fff;
+      }
+      .section{padding:84px 0}
+      .hero__stage{
+        aspect-ratio:auto;
+        height: 100vw;
+      }
+      .hero__inner{
+        display: grid;
+        top: 25vw;
+        justify-content:center;
+        align-items:flex-start;
+        padding:28px 0 28px;
+      }
+      .hero__card{
+        max-width:none;
+        margin:0 auto;
+        align-self:start;
+        text-align:left;
+      }
+      .hero__title{
+        font-size: clamp(25px, 9.7vw, 65px);
+        width:100%;
+        justify-items:start;
+        margin-inline:0;
+      }
+      .hero__eyebrow{
+        margin:0 0 14px;
+        font-size:clamp(13px, 2vw, 18px);
+      }
+      .hero__mission{
+        margin:14px 0 0;
+        justify-content:flex-start;
+        width:100%;
+        grid-template-columns:clamp(34px, 5vw, 46px) minmax(0, 1fr);
+        gap:12px;
+      }
+      .hero__mission-gif{
+        width:clamp(34px, 5vw, 46px);
+        height:clamp(34px, 5vw, 46px);
+      }
+      .hero__mission-copy{
+        font-size: clamp(10px, 6vw, 35px);
+        width: clamp(160px, 80vw, 535px);
+      }
+      .hero__bg{
+        display:flex;
+        align-items:flex-end;
+        justify-content:center;
+      }
+      .hero__bg img{
+        width:100%;
+        height:auto;
+        min-height:0;
+        max-width:none;
+        object-fit:contain;
+        object-position:center bottom;
+        margin-bottom:0;
+        bottom:0;
+        top:auto;
+      }
+      .hero__shade{display:block}
+
+      .captain{
+        border-radius:0;
+        padding-top:calc(84px + var(--hero-overlap));
+      }
+      .captain__shell{
+        min-height:auto;
+        padding-left:0;
+      }
+      .captain__rail{display:none}
+      .captain__head{
+        max-width:none;
+      }
+      .captain__scene{
+        height:auto;
+        margin-top:-30vw;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+      }
+      .captain__textimg{
+        display:none;
+      }
+      .captain__person{
+        position:relative;
+        left:auto;
+        top:auto;
+        bottom:auto;
+        transform:none;
+        width:min(320px, 78vw);
+        margin:0 auto 0;
+        opacity:1;
+      }
+      .captain__scene.is-in .captain__person{
+        transform:none;
+      }
+      .captain__cards{
+        display:grid;
+        width:min(100%, 360px);
+        gap:10px;
+        margin-top:0;
+      }
+      .captain__card{
+        background:rgba(255,255,255,.78);
+        color:var(--navy-deep);
+        border:1px solid rgba(255,255,255,.22);
+        box-shadow:0 12px 28px rgba(15,23,42,.10);
+      }
+      .captain__card p{color:#28415d;}
+      .captain__cta{
+        position:static;
+        margin-top:20px;
+      }
+
+      .values__grid{
+        grid-template-columns:1fr;
+      }
+      .value-card{
+        min-height:236px;
+        padding:24px 22px 26px;
+      }
+      .value-card__track{
+        max-width:100%;
+      }
+      .value-card__num{
+        right:18px;
+        bottom:8px;
+        font-size:92px;
+      }
+
+      .role-slab + .role-slab{
+        margin-top:calc(var(--role-cut) * -1 + 2px);
+      }
+      .role-slab__inner,
+      .role-slab:nth-child(even) .role-slab__inner{
+        min-height:0;
+        padding:calc(var(--role-cut) + 16px) 4vw calc(var(--role-cut) + 16px);
+        display:grid;
+        grid-template-columns:minmax(0,1fr) 124px;
+        gap:12px;
+        align-items:center;
+        justify-content:center;
+      }
+      .role-slab:nth-child(even) .role-slab__inner{
+        grid-template-columns:124px minmax(0,1fr);
+      }
+      .role-slab__inner{
+        clip-path:polygon(0 var(--role-cut), 100% 0, 100% 100%, 0 calc(100% - var(--role-cut)));
+                display: flex
+;
+        justify-content: space-around;
+      }
+      .role-slab:nth-child(even) .role-slab__inner{
+        clip-path:polygon(0 0, 100% var(--role-cut), 100% calc(100% - var(--role-cut)), 0 100%);
+        display: flex;
+        justify-content: space-around;
+      }
+      .role-slab__overlay,
+      .role-slab:nth-child(even) .role-slab__overlay{
+        background:linear-gradient(180deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,.08) 50%, rgba(255,255,255,.04) 100%);
+      }
+      .role-slab__body{
+        grid-column:1;
+        grid-row:1;
+        width:60%;
+        max-width:none;
+        padding:16px 16px 18px;
+        justify-self:stretch;
+        align-self:center;
+        margin:0;
+      }
+      .role-slab:nth-child(even) .role-slab__body{
+        grid-column:2;
+        grid-row:1;
+        width:60%;
+        max-width:none;
+        padding:16px 16px 18px;
+        justify-self:stretch;
+        align-self:center;
+        margin:0;
+      }
+      .role-slab__body::before{
+        background:rgba(255,255,255,.88);
+      }
+      .role-slab__media{
+        grid-column:2;
+        grid-row:1;
+        width:225px;
+        max-width:none;
+        min-height:0;
+        margin:0;
+        justify-self:center;
+        align-self:center;
+      }
+      .role-slab:nth-child(even) .role-slab__media{
+        grid-column:1;
+        grid-row:1;
+        width:225px;
+        max-width:none;
+        min-height:0;
+        margin:0;
+        justify-self:center;
+        align-self:center;
+      }
+      .role-slab__bg{
+        object-position:center;
+      }
+
+      .entry__grid{
+        grid-template-columns:1fr;
+      }
+
+      .wanted__box{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .wanted__poster{
+        width:220px;
+        flex-basis:auto;
+      }
+
+      .row{
+        grid-template-columns:1fr;
+      }
+      .row__th{
+        border-right:none;
+        border-bottom:1px solid #e3eaf3;
+      }
+      .recruit{
+        margin-top:calc(var(--role-cut) * -1 + 2px);
+        padding-top:calc(84px + var(--role-cut) + 14px);
+      }
+    }
+
+    @media (max-width:999px){
+      .floating-captain{ left:10px; }
+      .floating-entry{ right:10px; width:200px }
+    }
+
+    @media (max-width:599px){
+      .values__grid{grid-template-columns:1fr;}
+      .value-card{min-height:260px;}
+    }
+
+    @media (max-width:680px){
+      :root{ --header-h:72px; }
+
+      .header__inner{
+        min-height:var(--header-h);
+        gap:12px;
+      }
+      .brand__mark{
+        width:42px;
+        height:42px;
+        font-size:18px;
+      }
+      .brand__text{
+        font-size:13px;
+        line-height:1.25;
+        max-width:112px;
+      }
+      .nav{
+        gap:6px;
+      }
+      .nav a{
+        padding:9px 12px;
+        font-size:12px;
+      }
+
+      .hero__stage{
+        height: 125vw;
+      }
+      
+
+      .floating-entry{width:165px; right:8px;}
+      .captain__plus{
+        width:82px;
+        height:82px;
+        font-size:54px;
+      }
+      .captain__cards{
+        grid-template-columns:1fr;
+      }
+      .captain__cta .btn{
+        width:100%;
+      }
+
+      .value-card{
+        min-height:236px;
+        padding:22px 18px 24px;
+      }
+      .value-card__track{
+        max-width:calc(100% - 132px);
+      }
+      .value-card__line,
+      .value-card__line--v{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+        flex-wrap:nowrap;
+      }
+      .chip-h,.body-h,.chip-v,.body-v{max-width:100%; width:fit-content;}
+      .value-card__bgman{
+        width:120px;
+        right:10px;
+        bottom:12px;
+        opacity:.88;
+      }
+      .value-card__num{
+        right:10px;
+        bottom:8px;
+        font-size:84px;
+      }
+      .chip-v,
+      .body-v{
+        writing-mode:horizontal-tb;
+        min-height:auto;
+      }
+
+      .philosophy__inner{
+        justify-content:center;
+        align-items:flex-start;
+        padding:64px 0 38px;
+        min-height:520px;
+      }
+      .philosophy__visual{
+        min-height:520px;
+      }
+      .philosophy__card{
+        width:min(92vw, 660px);
+        padding:0 8px;
+      }
+      .philosophy__big{font-size:clamp(22px,8vw,36px);}
+      .philosophy__card .lead{font-size:clamp(14px,4.2vw,18px);}
+
+
+      .role-slab + .role-slab{
+        margin-top:calc(var(--role-cut) * -1 + 1px);
+      }
+      .role-slab__inner,
+      .role-slab:nth-child(even) .role-slab__inner{
+        padding:calc(var(--role-cut) + 14px) 10vw calc(var(--role-cut) + 14px);
+        gap: 0;
+      }
+      .role-slab__tag{
+        font-size:12px;
+        padding:7px 14px;
+      }
+      .role-slab__inner{grid-template-columns:112px minmax(0,1fr);}
+      .role-slab:nth-child(even) .role-slab__inner{grid-template-columns:minmax(0,1fr) 112px;}
+      .role-slab__media{width:112px; justify-self:center; align-self:center; grid-column:1; grid-row:1;}
+      .role-slab:nth-child(even) .role-slab__media{width:112px; justify-self:center; align-self:center; grid-column:2; grid-row:1;}
+      .role-slab__body{grid-column:2; grid-row:1;}
+      .role-slab:nth-child(even) .role-slab__body{grid-column:1; grid-row:1;}
+      .role-slab__title{
+        font-size:clamp(22px,7vw,30px);
+      }
+      .role-slab__text{
+        font-size:14px;
+        line-height:1.72;
+        max-width:none;
+      }
+      .role-slab__body,
+      .role-slab:nth-child(even) .role-slab__body{
+        width:70%;
+        max-width:none;
+        padding:16px 14px 18px;
+      }
+      .role-slab__media,
+      .role-slab:nth-child(even) .role-slab__media{
+        width:min(30vw, 118px);
+      }
+      .role-slab__more{
+        width:100%;
+        min-width:0;
+        padding:16px 20px;
+        font-size:16px;
+      }
+      .modal-back{
+        padding:12px;
+      }
+      .modal__head{
+        padding:20px 18px;
+      }
+      .modal__close{
+        width:62px;
+        height:62px;
+        font-size:38px;
+      }
+      .modal__body{
+        padding:22px 18px 24px;
+      }
+      .role-modal__card{
+        padding:18px 16px;
+        border-radius:22px;
+      }
+      .role-modal__actions .btn{
+        width:100%;
+      }
+
+      .wanted__box{
+        padding:20px 16px;
+        border-radius:24px;
+      }
+      .wanted__footer .btn-row{
+        width:100%;
+      }
+      .wanted__footer .btn-row .btn{
+        flex:1 1 100%;
+      }
+
+      .faq-q{
+        padding:16px 16px;
+        font-size:15px;
+      }
+      .faq-a{
+        padding:0 16px;
+      }
+      .faq-item.is-open .faq-a{
+        padding:0 16px 16px;
+      }
+
+      .modal__head{
+        padding:16px;
+      }
+      .modal__body{
+        padding:16px;
+      }
+    }
+
+    @media (max-width:450px){
+    .hero__stage {
+      height: 150vw;
+    }
+    }
+
+
+    @media (max-width:350px){
+      .value-card__bgman{
+        width:100px;
+      }
+      .value-card__num{
+        font-size:72px;
+      }
+    }
+
+  
+    /* Section headings: hide English eyebrow and use orange dot on Japanese title */
+    .section .eyebrow,
+    .philosophy .eyebrow{display:none;}
+    .captain__name,
+    .values .title-md,
+    .philosophy .title-md,
+    .roles .title-md,
+    .recruit .title-md,
+    .entry .title-md,
+    .wanted .title-md,
+    .faq .title-md{
+      position:relative;
+      padding-left:28px;
+    }
+    .captain__name::before,
+    .values .title-md::before,
+    .philosophy .title-md::before,
+    .roles .title-md::before,
+    .recruit .title-md::before,
+    .entry .title-md::before,
+    .wanted .title-md::before,
+    .faq .title-md::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.34em;
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 8px rgba(236,162,56,.10);
+    }
+    .philosophy .title-md{font-size:clamp(32px, 4.2vw, 44px); display: inline-block; text-align:center;}
+    .philosophy__big{font-size:clamp(56px, 7vw, 76px); line-height:1.02;}
+    .philosophy .lead{font-size:clamp(20px, 3vw, 32px); line-height:1.45; max-width:1100px;}
+    .roles .title-md{font-size:clamp(26px, 3vw, 42px);}
+    @media (max-width:680px){
+      .philosophy .title-md{font-size:clamp(24px, 6vw, 32px);}
+      .philosophy__big{font-size:clamp(38px, 12vw, 56px);}
+      .philosophy .lead{font-size:clamp(16px, 5vw, 22px);}
+      .roles .title-md{font-size:clamp(24px, 6vw, 32px);}
+    }
+
+    
+
+
+
+
+
+    /* ========================================
+   HERO only reset
+   background前提をやめて、img前提に切り替える
+======================================== */
+
+.hero{
+  position: relative;
+  z-index: 4;
+  padding: 0;
+  background: #dfeeff;
+  overflow: visible;
+}
+
+.hero__stage{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #dff1ff 0%, #b9d7fb 46%, #6f95cf 100%);
+}
+
+.hero__bg{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 背景側の同じ画像は使わない */
+.hero__bg img{
+  display: none;
+}
+
+.hero__shade{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 34%, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 22%),
+    linear-gradient(180deg, rgba(223,241,255,.10) 0%, rgba(128,164,220,.14) 60%, rgba(34,66,122,.08) 100%);
+}
+
+
+
+/* 船本体 */
+.hero__ship{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(-44px, -4vw, -18px);
+  z-index: 4; /* captainより前、文字より後ろ */
+  pointer-events: none;
+}
+
+.hero__ship img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: saturate(1.02);
+}
+
+.captain{
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(-90px, -6vw, -38px);
+}
+
+/* ========================================
+   HERO only reset
+   background前提をやめて、img前提に切り替える
+======================================== */
+
+.hero{
+  position: relative;
+  z-index: 4;
+  padding: 0;
+  background: #dfeeff;
+  overflow: visible;
+}
+
+.hero__stage{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #dff1ff 0%, #b9d7fb 46%, #6f95cf 100%);
+}
+
+.hero__bg{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 背景側の同じ画像は使わない */
+.hero__bg img{
+  display: none;
+}
+
+.hero__shade{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 34%, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 22%),
+    linear-gradient(180deg, rgba(223,241,255,.10) 0%, rgba(128,164,220,.14) 60%, rgba(34,66,122,.08) 100%);
+}
+
+/* 船本体 */
+.hero__ship{
+  position: absolute;
+  left: 0;
+  right: 0;
+      bottom: -9vw;
+  z-index: 4; /* captainより前、文字より後ろ */
+  pointer-events: none;
+}
+
+.hero__ship img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: saturate(1.02);
+}
+
+.captain{
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(-70px, -5vw, -28px);
+      padding: 25vw 0 0;
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header__inner">
+      <div class="brand">
+        <div class="brand__mark">NK</div>
+        <div class="brand__text">株式会社マルガジャパン</div>
+      </div>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="メニューを開く"><span class="nav-toggle__bar"></span></button>
+      <nav class="nav" id="siteNav" aria-label="ページ内ナビ">
+        <a href="#top">TOP</a>
+        <a href="#captain">CAPTAIN</a>
+        <!-- <a href="#values">VALUES</a> -->
+        <a href="#philosophy">PHILOSOPHY</a>
+        <a href="#roles">ROLES</a>
+                <a href="#entry">ENTRY</a>
+        <!-- <a href="#wanted">WANTED</a> -->
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <a class="floating-entry" id="floatingEntry" href="#entry" aria-label="面談・応募はこちら"><img src="img/entry-btn.png" alt="面談・応募はこちら"></a>
+  <div class="floating-captain" id="floatingCaptain" aria-hidden="true">Captain</div>
+
+  <main>
+    <section class="hero" id="top">
+  <div class="hero__stage">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="img/hero.png" alt="">
+    </div>
+    <div class="hero__shade"></div>
+
+    <div class="wrap hero__inner">
+      <div class="hero__card reveal-up">
+        <p class="eyebrow hero__eyebrow">Recruitment</p>
+        <h1 class="hero__title">
+          <span class="hero__title-line">飛び出そう！一緒に</span>
+          <span class="hero__title-line">目指そう！未開の地</span>
+        </h1>
+        <div class="hero__mission" aria-label="健康寿命100年の島へ。">
+          <img class="hero__mission-gif" src="img/first_gif.gif" alt="">
+          <div class="hero__mission-copy">健康寿命100年の島へ。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 船専用レイヤー -->
+  <div class="hero__ship" aria-hidden="true">
+    <img src="img/hero.png" alt="">
+  </div>
+</section>
+
+    <section class="section captain" id="captain">
+      <div class="wrap">
+        <div class="captain__shell">
+          <div class="captain__rail" aria-hidden="true">
+            <span>Captain</span>
+          </div>
+
+          <div class="captain__head reveal-up">
+            <p class="eyebrow">Captain</p>
+            <h2 class="captain__name">船長</h2>
+            <p class="captain__role">代表取締役 岡田 信樹</p>
+            <button class="captain__plus" id="captainOpen" type="button" aria-label="代表プロフィールを開く">+</button>
+          </div>
+
+          <div class="captain__scene" id="captainScene">
+            <img class="captain__textimg" src="img/captain-text.png" alt="">
+            <img class="captain__person" src="img/captain__person.png" alt="代表取締役 岡田 信樹">
+
+            <div class="captain__cards">
+              <div class="captain__card">
+                <b>新しいアイディアの天才（脳）</b>
+                <p>新しい発想を嫌がらず、まず試しに行く判断力。</p>
+              </div>
+              <div class="captain__card">
+                <b>本質を見抜く・未来を見通す（目）</b>
+                <p>目先だけでなく、先の勝ち筋まで読みに行く。</p>
+              </div>
+              <div class="captain__card">
+                <b>論理を追求した巧みな話術（口）</b>
+                <p>筋が通らない話は通さない。伝え方も武器。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section values" id="values">
+      <div class="wrap">
+        <div class="values__intro reveal-up">
+          <p class="eyebrow">Values</p>
+          <h2 class="title-md">この船を進める4つの価値観</h2>
+          <p class="lead">判断基準をはっきり持って、変化を前に進めるチームです。</p>
+        </div>
+
+        <div class="values__grid">
+          <article class="value-card reveal-up">
+            <img class="value-card__bgman" src="img/01-man.png" alt="" aria-hidden="true">
+            <div class="value-card__num">01</div>
+            <div class="value-card__track">
+              <div class="value-card__line">
+                <span class="chip-h">もっといい方法があれば<br>すぐ変える</span>
+              </div>
+              <div class="value-card__line">
+                <span class="body-h">目的はブラさず<br>囚われない・明確</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="value-card reveal-up">
+            <img class="value-card__bgman" src="img/02-man.png" alt="" aria-hidden="true">
+            <div class="value-card__num">02</div>
+            <div class="value-card__track">
+              <div class="value-card__line value-card__line--v">
+                <span class="chip-v">新しいことにはどんどん挑戦</span>
+                <span class="body-v">ついて来れないやつは</span>
+                <span class="body-v">置いていく、常に成長</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="value-card reveal-up">
+            <img class="value-card__bgman" src="img/03-man.png" alt="" aria-hidden="true">
+            <div class="value-card__num">03</div>
+            <div class="value-card__track">
+              <div class="value-card__line value-card__line--v">
+                <span class="chip-v">甘いプレゼンは一喝</span>
+                <span class="body-v">要点をしっかり、</span>
+                <span class="body-v">論理を捨てるな</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="value-card reveal-up">
+            <img class="value-card__bgman" src="img/04-man.png" alt="" aria-hidden="true">
+            <div class="value-card__num">04</div>
+            <div class="value-card__track">
+              <div class="value-card__line">
+                <span class="chip-h">楽しく仕事がいちばん</span>
+              </div>
+              <div class="value-card__line">
+                <span class="body-h">助け合い、飲み会</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy" id="philosophy">
+      <div class="philosophy__visual">
+        <div class="philosophy__bg" aria-hidden="true">
+          <img src="img/island.png" alt="">
+        </div>
+        <div class="philosophy__shade"></div>
+
+        <div class="wrap philosophy__inner">
+          <div class="philosophy__card reveal-up">
+            <p class="eyebrow">Philosophy</p>
+            <h2 class="title-md">理念</h2>
+            <p class="philosophy__big">健康寿命100歳</p>
+            <p class="lead">人生100歳時代に100歳まで健康で楽しく思い通りの人生を送れる国を目指して、この船は進み続けます</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section roles" id="roles">
+      <div class="wrap">
+        <div class="roles__intro reveal-up">
+          <p class="eyebrow eyebrow--dark">Roles</p>
+          <h2 class="title-md">職種：4つの役割</h2>
+          
+        </div>
+
+        <div class="roles__grid">
+          <article class="role-slab role-slab--sales reveal-up">
+            <div class="role-slab__inner">
+              <img class="role-slab__bg" src="img/sales.png" alt="" aria-hidden="true">
+              <div class="role-slab__overlay" aria-hidden="true"></div>
+              <div class="role-slab__media">
+                <img class="role-slab__avatar" src="img/sales-man.png" alt="営業職のイメージ">
+              </div>
+              <div class="role-slab__body">
+                <span class="role-slab__tag">SALES</span>
+                <h3 class="role-slab__title">営業部（戦闘員）</h3>
+                <p class="role-slab__text">未知を切り開く役。腕っぷしではなく、提案力と推進力で道を作る。顧客課題を言語化し、前に進めるポジション。</p>
+                <div class="role-slab__actions">
+                  <button class="role-slab__more plus" type="button" data-role="sales">VIEW MORE</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="role-slab role-slab--develop reveal-up">
+            <div class="role-slab__inner">
+              <img class="role-slab__bg" src="img/develop.png" alt="" aria-hidden="true">
+              <div class="role-slab__overlay" aria-hidden="true"></div>
+              <div class="role-slab__body">
+                <span class="role-slab__tag">DEVELOP</span>
+                <h3 class="role-slab__title">開発部（コック）</h3>
+                <p class="role-slab__text">無いものなら作ればいい。業務を仕組みに変えて、船の速度を上げる役。改善の手を止めないのが仕事。</p>
+                <div class="role-slab__actions">
+                  <button class="role-slab__more plus" type="button" data-role="dev">VIEW MORE</button>
+                </div>
+              </div>
+              <div class="role-slab__media">
+                <img class="role-slab__avatar" src="img/develop-man.png" alt="開発職のイメージ">
+              </div>
+            </div>
+          </article>
+
+          <article class="role-slab role-slab--make reveal-up">
+            <div class="role-slab__inner">
+              <img class="role-slab__bg" src="img/make.png" alt="" aria-hidden="true">
+              <div class="role-slab__overlay" aria-hidden="true"></div>
+              <div class="role-slab__media">
+                <img class="role-slab__avatar" src="img/make-man.png" alt="製造職のイメージ">
+              </div>
+              <div class="role-slab__body">
+                <span class="role-slab__tag">MAKE</span>
+                <h3 class="role-slab__title">製造部（船大工）</h3>
+                <p class="role-slab__text">品質の要。手を動かし、当たり前を崩さず積み上げる。信頼を現場で作る、航海の土台そのもの。</p>
+                <div class="role-slab__actions">
+                  <button class="role-slab__more plus" type="button" data-role="make">VIEW MORE</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="role-slab role-slab--ops reveal-up">
+            <div class="role-slab__inner">
+              <img class="role-slab__bg" src="img/ops.png" alt="" aria-hidden="true">
+              <div class="role-slab__overlay" aria-hidden="true"></div>
+              <div class="role-slab__body">
+                <span class="role-slab__tag">OPS</span>
+                <h3 class="role-slab__title">管理部（航海士）</h3>
+                <p class="role-slab__text">数字と仕組みで未来を読む役。船内の流れを整え、全体最適で進行を支える守護者ポジション。</p>
+                <div class="role-slab__actions">
+                  <button class="role-slab__more plus" type="button" data-role="ops">VIEW MORE</button>
+                </div>
+              </div>
+              <div class="role-slab__media">
+                <img class="role-slab__avatar" src="img/ops-man.png" alt="管理職のイメージ">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--
+    <section class="section recruit" id="recruit">
+      <div class="wrap">
+        <div class="reveal-up">
+          <p class="eyebrow eyebrow--dark">Recruit</p>
+          <h2 class="title-md">募集要項</h2>
+          <p class="lead">ここは見やすさ優先。条件は静かに、でも分かりやすく整理。</p>
+        </div>
+
+        <div class="recruit__box reveal-up">
+          <div class="row">
+            <div class="row__th">募集職種</div>
+            <div class="row__td">営業企画 / 商品開発 / EC運営 / 事業管理</div>
+          </div>
+          <div class="row">
+            <div class="row__th">雇用形態</div>
+            <div class="row__td">正社員（試用期間あり）</div>
+          </div>
+          <div class="row">
+            <div class="row__th">求める人物像</div>
+            <div class="row__td">即判断・即実行ができる、分かりやすく伝えられる、変化対応を楽しめる人</div>
+          </div>
+          <div class="row">
+            <div class="row__th">勤務スタイル</div>
+            <div class="row__td">チーム連携を前提に、裁量を持って行動する運用</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <section class="section entry" id="entry">
+      <div class="wrap">
+        <div class="reveal-up">
+          <p class="eyebrow eyebrow--dark">Entry</p>
+          <h2 class="title-md">面談・応募はこちら</h2>
+        </div>
+
+        <div class="entry__grid">
+          <article class="entry-card reveal-up">
+            <span class="entry-card__tag">CASUAL TALK</span>
+            <h3>まずはカジュアル面談</h3>
+            <p>仕事内容・文化・期待役割を30分で確認。応募前の疑問を整理したい人向け。</p>
+            <ol>
+              <li>カジュアル面談</li>
+              <li>書類確認</li>
+              <li>面談</li>
+              <li>内定</li>
+            </ol>
+            <div class="btn-row">
+              <button class="btn btn--line" type="button">カジュアル面談を予約</button>
+            </div>
+          </article>
+
+          <article class="entry-card reveal-up">
+            <span class="entry-card__tag">FORMAL ENTRY</span>
+            <h3>本応募に進む</h3>
+            <p>スピード環境で成長したい、変化を楽しめる、自分で提案して動きたい人向け。</p>
+            <ol>
+              <li>エントリー</li>
+              <li>書類確認</li>
+              <li>面談</li>
+              <li>内定</li>
+            </ol>
+            <div class="btn-row">
+              <button class="btn btn--primary" type="button">本応募する</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wanted" id="wanted">
+      <div class="wrap">
+        <div class="reveal-up">
+          <p class="eyebrow eyebrow--dark">Wanted</p>
+          <h2 class="title-md">この船に乗る人</h2>
+        </div>
+
+        <div class="wanted__box reveal-up">
+          <div class="wanted__poster" aria-hidden="true">
+            <svg viewBox="0 0 220 310" width="100%" height="100%">
+              <rect width="220" height="310" rx="18" fill="#fff6e9" stroke="#e7d6bb"/>
+              <text x="110" y="42" text-anchor="middle" font-size="28" font-weight="900" fill="#1f2937">WANTED</text>
+              <circle cx="110" cy="126" r="32" fill="#111111"/>
+              <path d="M58 224c7-45 36-67 52-67s45 22 52 67H58z" fill="#111111"/>
+              <rect x="32" y="252" width="156" height="34" rx="8" fill="#eca238"/>
+              <text x="110" y="274" text-anchor="middle" font-size="14" font-weight="900" fill="#ffffff">REWARD</text>
+            </svg>
+          </div>
+
+          <div class="wanted__content">
+            <ul class="check-list">
+              <li><span class="check-mark">✓</span><span>変化を楽しめる人</span></li>
+              <li><span class="check-mark">✓</span><span>成長速度の速い環境が好きな人</span></li>
+              <li><span class="check-mark">✓</span><span>チームで勝ちたい人</span></li>
+            </ul>
+
+            <p class="wanted__note"><b>合わない人：</b>安定が最優先な人 / 指示待ちでいたい人</p>
+
+            <div class="wanted__footer">
+              <div>
+                <strong>やるなら本気で。</strong>
+                <span>健康寿命100年の島に向けて、一緒に行くか？</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="wrap">
+        <div class="reveal-up">
+          <p class="eyebrow eyebrow--dark">FAQ</p>
+          <h2 class="title-md">気になることはここで解決</h2>
+          <p class="lead">応募前によくある質問を、先にまとめました。</p>
+        </div>
+
+        <div class="faq__list">
+          <div class="faq-item is-open reveal-up">
+            <button class="faq-q" type="button">
+              <span>未経験でも応募できますか？</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <div class="faq-a">
+              可能です。未経験OKの職種を用意し、入社後は役割ごとに立ち上がり支援を行います。行動力と改善姿勢を重視します。
+            </div>
+          </div>
+
+          <div class="faq-item reveal-up">
+            <button class="faq-q" type="button">
+              <span>どんな人がこの会社に合いますか？</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <div class="faq-a">
+              指示待ちより自走、長い会議より短い判断、個人完結よりチーム連携を好む人に合います。変化への耐性は必須です。
+            </div>
+          </div>
+
+          <div class="faq-item reveal-up">
+            <button class="faq-q" type="button">
+              <span>まずは話を聞くだけでも大丈夫ですか？</span>
+              <span class="faq-symbol">+</span>
+            </button>
+            <div class="faq-a">
+              問題ありません。まずはカジュアル面談で、仕事内容・期待役割・働き方のギャップをすり合わせましょう。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 株式会社マルガジャパン Recruitment Site
+  </footer>
+
+  <div class="modal-back" id="captainModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="captainModalTitle">
+      <div class="modal__head">
+        <h3 id="captainModalTitle">代表取締役 岡田 信樹</h3>
+        <button class="modal__close" id="captainClose" type="button" aria-label="閉じる">×</button>
+      </div>
+      <div class="modal__body">
+        TV通販業界を経て、2006年に健康食品市場で<br>
+        美味しい青汁・青汁三昧を発売し大ヒット！<br><br>
+        その後も東北の震災を契機に海外への卸売から日本でのプロテイン市場開拓を第一線で行い、<br>
+        おいしさを武器に成長してきた発明家・兼経営者
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-back" id="roleModalBack" aria-hidden="true">
+    <div class="modal role-modal" role="dialog" aria-modal="true" aria-labelledby="roleModalTitle">
+      <div class="modal__head">
+        <h3 id="roleModalTitle">営業部（戦闘員）｜未知を切り開く</h3>
+        <button class="modal__close" id="roleModalClose" type="button" aria-label="閉じる">×</button>
+      </div>
+      <div class="modal__body">
+        <p class="role-modal__lead" id="roleModalLead">顧客の課題を“言語化”して、最短ルートで解決へ導く。スピード感が武器。</p>
+
+        <div class="role-modal__grid">
+          <section class="role-modal__card">
+            <h4>向いてる人</h4>
+            <p id="roleModalFit">変化が好き／仮説検証が早い／折れない</p>
+          </section>
+          <section class="role-modal__card">
+            <h4>1日の流れ（例）</h4>
+            <p id="roleModalFlow">商談→提案→改善→再提案</p>
+          </section>
+          <section class="role-modal__card">
+            <h4>求める姿勢</h4>
+            <p id="roleModalAttitude">「もっと良くする」提案ができる。やり方に囚われない。</p>
+          </section>
+        </div>
+
+        <div class="role-modal__actions">
+          <button class="btn btn--line" type="button" onclick="document.getElementById('entry').scrollIntoView({behavior:'smooth'});document.getElementById('roleModalBack').classList.remove('is-open');document.getElementById('roleModalBack').setAttribute('aria-hidden','true');document.body.style.overflow='';">選考フローを見る</button>
+          <button class="btn btn--primary" type="button" onclick="document.getElementById('entry').scrollIntoView({behavior:'smooth'});document.getElementById('roleModalBack').classList.remove('is-open');document.getElementById('roleModalBack').setAttribute('aria-hidden','true');document.body.style.overflow='';">応募条件を見る</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (() => {
+    const revealTargets = document.querySelectorAll('.reveal-up');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealTargets.forEach((el) => io.observe(el));
+
+    const captainScene = document.getElementById('captainScene');
+    if (captainScene) {
+      const captainIo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            captainScene.classList.add('is-in');
+            captainIo.unobserve(captainScene);
+          }
+        });
+      }, { threshold: 0.01 });
+      captainIo.observe(captainScene);
+    }
+
+    const navToggle = document.getElementById('navToggle');
+    const siteNav = document.getElementById('siteNav');
+    const closeNav = () => {
+      if (!navToggle || !siteNav) return;
+      navToggle.setAttribute('aria-expanded', 'false');
+      siteNav.classList.remove('is-open');
+    };
+    navToggle?.addEventListener('click', () => {
+      const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!isOpen));
+      siteNav?.classList.toggle('is-open', !isOpen);
+    });
+    siteNav?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeNav);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800) closeNav();
+    });
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item) => {
+      const btn = item.querySelector('.faq-q');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        faqItems.forEach((other) => other.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+
+    const floatingEntry = document.getElementById('floatingEntry');
+    const floatingCaptain = document.getElementById('floatingCaptain');
+    const heroSection = document.getElementById('top');
+    const captainSection = document.getElementById('captain');
+    const valuesSection = document.getElementById('values');
+    const philosophySection = document.getElementById('philosophy');
+    const rolesSection = document.getElementById('roles');
+    const wantedSection = document.getElementById('wanted');
+    const entrySection = document.getElementById('entry');
+    const faqSection = document.getElementById('faq');
+
+    const inView = (rect, headerH, ratio = 0.88) =>
+      !!rect && rect.bottom > headerH + 20 && rect.top < window.innerHeight * ratio;
+
+
+      const visibleHeight = (rect) => {
+  if (!rect) return 0;
+  const top = Math.max(rect.top, 0);
+  const bottom = Math.min(rect.bottom, window.innerHeight);
+  return Math.max(0, bottom - top);
+};
+
+    const updateFloatingUi = () => {
+      const headerH = document.querySelector('.header')?.offsetHeight || 0;
+      const heroRect = heroSection?.getBoundingClientRect();
+      const captainRect = captainSection?.getBoundingClientRect();
+      const valuesRect = valuesSection?.getBoundingClientRect();
+      const philosophyRect = philosophySection?.getBoundingClientRect();
+      const rolesRect = rolesSection?.getBoundingClientRect();
+      const wantedRect = wantedSection?.getBoundingClientRect();
+      const entryRect = entrySection?.getBoundingClientRect();
+      const faqRect = faqSection?.getBoundingClientRect();
+
+      const heroVisible = visibleHeight(heroRect);
+const captainVisible = visibleHeight(captainRect);
+
+const captainDominant = captainVisible > heroVisible && captainVisible > 220;
+
+const captainActive = inView(captainRect, headerH, 0.92);
+const valuesActive = inView(valuesRect, headerH, 0.88);
+const philosophyActive = inView(philosophyRect, headerH, 0.92);
+const rolesActive = inView(rolesRect, headerH, 0.92);
+const wantedActive = inView(wantedRect, headerH, 0.92);
+const entryActive = inView(entryRect, headerH, 0.86);
+const faqActive = inView(faqRect, headerH, 0.84);
+
+let label = '';
+let dark = false;
+
+if (captainDominant || valuesActive || philosophyActive || rolesActive || wantedActive || entryActive || faqActive) {
+  if (faqActive) { label = 'FAQ'; dark = true; }
+  else if (entryActive) { label = 'Entry'; dark = true; }
+  else if (wantedActive) { label = 'Wanted'; dark = true; }
+  else if (rolesActive) { label = 'Roles'; dark = false; }
+  else if (philosophyActive) { label = 'Philosophy'; dark = false; }
+  else if (valuesActive) { label = 'Values'; dark = false; }
+  else if (captainActive && captainDominant) { label = 'Captain'; dark = false; }
+}
+
+      if (label) {
+        floatingCaptain.textContent = label;
+        floatingCaptain.classList.add('is-active');
+        floatingCaptain.classList.toggle('is-dark', dark);
+        floatingCaptain.classList.toggle('is-light', !dark);
+      } else {
+        floatingCaptain.classList.remove('is-active', 'is-dark', 'is-light');
+      }
+
+      /* 今すぐこの船に乗り込む
+         philosophy〜roles の間だけ表示
+         範囲外に出たら即フェードアウト */
+      const shouldShowEntry = philosophyActive || rolesActive;
+
+      if (shouldShowEntry) {
+        floatingEntry?.classList.remove('is-fading');
+        floatingEntry?.classList.add('is-active');
+      } else {
+        if (floatingEntry?.classList.contains('is-active')) {
+          floatingEntry.classList.add('is-fading');
+          floatingEntry.classList.remove('is-active');
+        } else {
+          floatingEntry?.classList.remove('is-fading');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', updateFloatingUi, { passive: true });
+    window.addEventListener('resize', updateFloatingUi);
+    updateFloatingUi();
+
+    const modal = document.getElementById('captainModal');
+    const openBtn = document.getElementById('captainOpen');
+    const closeBtn = document.getElementById('captainClose');
+
+    const openModal = () => {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    openBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    const roleData = {
+      sales: {
+        title: '営業部（戦闘員） ｜ 未知を切り開く',
+        lead: '顧客の課題を“言語化”して、最短ルートで解決へ導く。スピード感が武器。',
+        fit: '変化が好き／仮説検証が早い／折れない',
+        flow: '商談→提案→改善→再提案',
+        attitude: '「もっと良くする」提案ができる。やり方に囚われない。'
+      },
+      dev: {
+        title: '開発部（コック） ｜ 仕組みで船を加速',
+        lead: '無いものなら作ればいい。業務を仕組みに変えて、チームの速度を上げる。',
+        fit: '作るのが好き／自走できる／改善が早い',
+        flow: '課題整理→実装→検証→改善',
+        attitude: '止まるより動く。まず作って、最短で直す。'
+      },
+      make: {
+        title: '製造部（船大工） ｜ 品質の要',
+        lead: 'ただひたすらに手を動かす。品質・安全・安定供給を現場で守る。',
+        fit: '丁寧／継続が強い／小さな異常に気づける',
+        flow: '準備→製造→検品→記録→改善',
+        attitude: '当たり前を高い精度で守り、改善提案までやり切る。'
+      },
+      ops: {
+        title: '管理部（航海士） ｜ 数字と仕組みで未来予測',
+        lead: '数字を読み、仕組みを整え、船内の意思決定を前に進める守護者。',
+        fit: '先回りできる／全体最適で考えられる／調整が得意',
+        flow: '集計→分析→改善案→運用定着',
+        attitude: '人を責めず、仕組みで解決する。'
+      }
+    };
+
+    const roleModalBack = document.getElementById('roleModalBack');
+    const roleModalClose = document.getElementById('roleModalClose');
+    const roleModalTitle = document.getElementById('roleModalTitle');
+    const roleModalLead = document.getElementById('roleModalLead');
+    const roleModalFit = document.getElementById('roleModalFit');
+    const roleModalFlow = document.getElementById('roleModalFlow');
+    const roleModalAttitude = document.getElementById('roleModalAttitude');
+
+    const closeRoleModal = () => {
+      roleModalBack.classList.remove('is-open');
+      roleModalBack.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.plus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.role;
+        const info = roleData[key];
+        if (!info) return;
+        roleModalTitle.textContent = info.title;
+        roleModalLead.textContent = info.lead;
+        roleModalFit.textContent = info.fit;
+        roleModalFlow.textContent = info.flow;
+        roleModalAttitude.textContent = info.attitude;
+        roleModalBack.classList.add('is-open');
+        roleModalBack.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    roleModalClose?.addEventListener('click', closeRoleModal);
+    roleModalBack?.addEventListener('click', (e) => {
+      if (e.target === roleModalBack) closeRoleModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeRoleModal();
+      }
+    });
+  })();
+</script>
+</body>
+</html>
