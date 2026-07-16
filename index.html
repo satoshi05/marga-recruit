@@ -2685,6 +2685,538 @@
         font-size: 15px;
       }
     }
+  
+
+    /* =====================================================
+      2026 update: CAPTAIN画像出し分け + ROLES SPカード内完結
+
+      CAPTAIN：
+      - PC：img/captain__person-pc.png / width 80% / max 400px
+      - SP：img/captain__person-sp.png / width 100%
+
+      ROLES：
+      - PCは既存レイアウト維持
+      - SPのみカード内で左テキスト・右画像＋VIEWに変更
+    ===================================================== */
+
+    .captain__picture {
+      display: block;
+      width: 80%;
+      max-width: 850px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 4;
+    }
+
+    .captain__person-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: none;
+      position: static !important;
+      left: auto !important;
+      top: auto !important;
+      bottom: auto !important;
+      transform: none !important;
+      opacity: 1 !important;
+      filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .12));
+    }
+
+    .captain__scene:has(.captain__picture) {
+      position: relative;
+      height: auto !important;
+      margin-top: clamp(-180px, -18vw, -90px) !important;
+      display: flex !important;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: visible;
+      z-index: 3;
+    }
+
+    .captain__scene:has(.captain__picture) .captain__textimg,
+    .captain__scene:has(.captain__picture) .captain__cards,
+    .captain__scene:has(.captain__picture) .captain__person {
+      display: none !important;
+    }
+
+    .role-slab__mobile-side {
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      .captain__scene:has(.captain__picture) {
+        margin-top: -18vw !important;
+        justify-content: center;
+      }
+
+      .captain__picture {
+        width: 100%;
+        max-width: none;
+      }
+
+      .captain__person-img {
+        width: 100%;
+      }
+
+      .roles {
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .roles__grid {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        display: grid;
+        gap: 0;
+        overflow: hidden;
+      }
+
+      .role-slab,
+      .role-slab + .role-slab {
+        margin-top: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .role-slab__inner,
+      .role-slab:nth-child(even) .role-slab__inner {
+        position: relative;
+        min-height: auto !important;
+        padding: 34px 4vw !important;
+        display: block !important;
+        clip-path: none !important;
+        overflow: hidden !important;
+        isolation: isolate;
+      }
+
+      .role-slab__bg {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        transform: none !important;
+      }
+
+      .role-slab__overlay,
+      .role-slab:nth-child(even) .role-slab__overlay {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 1 !important;
+        background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.16) 100%) !important;
+        pointer-events: none;
+      }
+
+      .role-slab__media,
+      .role-slab:nth-child(even) .role-slab__media {
+        display: none !important;
+      }
+
+      .role-slab__body,
+      .role-slab:nth-child(even) .role-slab__body {
+        position: relative !important;
+        z-index: 4 !important;
+        width: min(100%, 420px) !important;
+        max-width: 420px !important;
+        min-height: 0 !important;
+        margin: 0 auto !important;
+        padding: 22px 18px 20px !important;
+        border-radius: 28px !important;
+        background: rgba(255, 255, 255, .88) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 16px 36px rgba(15, 23, 42, .14) !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 46% !important;
+        grid-template-areas:
+          "tag side"
+          "title side"
+          "text side" !important;
+        column-gap: 12px !important;
+        row-gap: 10px !important;
+        align-items: start !important;
+      }
+
+      .role-slab__body::before,
+      .role-slab:nth-child(even) .role-slab__body::before {
+        display: none !important;
+      }
+
+      .role-slab__tag {
+        grid-area: tag !important;
+        width: max-content !important;
+        max-width: 100%;
+        padding: 6px 13px !important;
+        font-size: 11px !important;
+        line-height: 1 !important;
+        border-radius: 999px !important;
+        background: rgba(255,255,255,.94) !important;
+      }
+
+      .role-slab__title {
+        grid-area: title !important;
+        margin: 2px 0 0 !important;
+        font-size: clamp(25px, 7.4vw, 34px) !important;
+        line-height: 1.14 !important;
+        letter-spacing: .01em;
+        text-align: left !important;
+        word-break: keep-all;
+      }
+
+      .role-slab__text {
+        grid-area: text !important;
+        margin: 0 !important;
+        max-width: none !important;
+        font-size: clamp(13px, 3.5vw, 15px) !important;
+        line-height: 1.72 !important;
+        color: #1f2f46 !important;
+        text-align: left !important;
+      }
+
+      .role-slab__actions {
+        display: none !important;
+      }
+
+      .role-slab__mobile-side {
+        grid-area: side !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        align-self: stretch;
+        min-width: 0;
+      }
+
+      .role-slab__mobile-avatar {
+        display: block;
+        width: 100%;
+        max-width: 145px;
+        height: auto;
+        max-height: 150px;
+        object-fit: contain;
+        object-position: center bottom;
+        filter: drop-shadow(0 12px 20px rgba(15, 23, 42, .16));
+      }
+
+      .role-slab__mobile-more {
+        width: min(100%, 118px);
+        min-height: 62px;
+        border: 1px solid #d5deec;
+        border-radius: 999px;
+        background: #fff;
+        color: #274f93;
+        box-shadow: 0 12px 24px rgba(15, 23, 42, .10);
+        font-size: 17px;
+        font-weight: 900;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0 18px;
+        display: grid;
+        place-items: center;
+      }
+
+      .role-slab__mobile-more:hover {
+        transform: translateY(-1px);
+      }
+    }
+
+    @media (max-width: 450px) {
+      .captain__scene:has(.captain__picture) {
+        margin-top: -12vw !important;
+      }
+
+      .role-slab__inner,
+      .role-slab:nth-child(even) .role-slab__inner {
+        padding: 28px 3.5vw !important;
+      }
+
+      .role-slab__body,
+      .role-slab:nth-child(even) .role-slab__body {
+        width: min(100%, 360px) !important;
+        padding: 20px 16px 20px !important;
+        grid-template-columns: minmax(0, 1fr) 45% !important;
+        column-gap: 10px !important;
+        border-radius: 26px !important;
+      }
+
+      .role-slab__title {
+        font-size: clamp(24px, 7.8vw, 31px) !important;
+      }
+
+      .role-slab__text {
+        font-size: clamp(12px, 3.45vw, 14px) !important;
+        line-height: 1.68 !important;
+      }
+
+      .role-slab__mobile-avatar {
+        max-width: 132px;
+        max-height: 136px;
+      }
+
+      .role-slab__mobile-more {
+        width: 96px;
+        min-height: 56px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .role-slab__body,
+      .role-slab:nth-child(even) .role-slab__body {
+        grid-template-columns: minmax(0, 1fr) 42% !important;
+        padding: 18px 14px !important;
+      }
+
+      .role-slab__title {
+        font-size: 23px !important;
+      }
+
+      .role-slab__text {
+        font-size: 12px !important;
+      }
+
+      .role-slab__mobile-avatar {
+        max-width: 112px;
+      }
+
+      .role-slab__mobile-more {
+        width: 84px;
+        min-height: 52px;
+        font-size: 15px;
+      }
+    }
+/* =====================================================
+  ROLES 最終調整
+
+  1. PCと同じ台形構造をスマホにも適用
+  2. 台形同士の白線を左右均一にする
+  3. タブレット時は白いカードを縮めて人物PNGとの重なりを防ぐ
+
+  ※以前追加したスマホ用の斜めスライスコードは削除し、
+    このコードだけをCSSの一番最後に置いてください。
+===================================================== */
+
+
+/* =====================================================
+  TABLET
+  801px〜1100px
+
+  PCレイアウトを維持したまま、
+  白い説明カードだけ小さくする
+===================================================== */
+
+@media (min-width: 801px) and (max-width: 1100px) {
+
+  .role-slab__inner,
+  .role-slab:nth-child(even) .role-slab__inner {
+    padding-inline: 7vw;
+    gap: 3vw;
+  }
+
+  /* 白いカードを縮小 */
+  .role-slab__body,
+  .role-slab:nth-child(even) .role-slab__body {
+    width: clamp(300px, 37vw, 380px);
+    max-width: 380px;
+    flex: 0 0 auto;
+    padding: 22px 24px 24px;
+  }
+
+  .role-slab__title {
+    font-size: clamp(23px, 2.7vw, 30px);
+  }
+
+  .role-slab__text {
+    font-size: clamp(13px, 1.45vw, 15px);
+    line-height: 1.7;
+  }
+
+  .role-slab__more {
+    min-width: 180px;
+    padding: 15px 28px;
+    font-size: 15px;
+  }
+
+  /* 人物画像側の領域を確保 */
+  .role-slab__media,
+  .role-slab:nth-child(even) .role-slab__media {
+    width: 43vw;
+    flex: 0 0 43vw;
+  }
+
+  .role-slab__avatar {
+    width: 42vw;
+    top: -12vw;
+  }
+}
+
+
+/* =====================================================
+  SMARTPHONE
+  PCとまったく同じ台形の組み合わせを使用
+
+  --role-cut：斜めの深さ
+  --role-gap：白線の太さ
+===================================================== */
+
+@media (max-width: 800px) {
+
+  .roles {
+    --role-cut: clamp(22px, 6vw, 34px);
+    --role-gap: 4px;
+
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .roles__grid {
+    background: #fff;
+    overflow: visible !important;
+  }
+
+  .role-slab {
+    position: relative;
+    overflow: visible !important;
+    background: #fff;
+  }
+
+  /*
+    前の背景と次の背景を、
+    斜めの深さ分だけ重ねる。
+
+    最後に role-gap 分だけ戻すことで、
+    左右均一な白線になる。
+  */
+  .role-slab + .role-slab {
+    margin-top:
+      calc(
+        (var(--role-cut) * -1) + var(--role-gap)
+      ) !important;
+  }
+
+  /*
+    カードが台形のカット部分に入らないように、
+    上下に role-cut 分の余白を確保
+  */
+  .role-slab__inner,
+  .role-slab:nth-child(even) .role-slab__inner {
+    position: relative !important;
+    min-height: auto !important;
+
+    padding:
+      calc(var(--role-cut) + 22px)
+      4vw
+      calc(var(--role-cut) + 22px) !important;
+
+    overflow: hidden !important;
+    isolation: isolate;
+  }
+
+  /*
+    1・3番目
+
+    左上が低い
+    右上が高い
+
+    左下が高い
+    右下が低い
+  */
+  .role-slab:nth-child(odd) .role-slab__inner {
+    clip-path: polygon(
+      0 var(--role-cut),
+      100% 0,
+      100% 100%,
+      0 calc(100% - var(--role-cut))
+    ) !important;
+  }
+
+  /*
+    2・4番目
+
+    左上が高い
+    右上が低い
+
+    左下が低い
+    右下が高い
+
+    前後の台形と完全に平行になる
+  */
+  .role-slab:nth-child(even) .role-slab__inner {
+    clip-path: polygon(
+      0 0,
+      100% var(--role-cut),
+      100% calc(100% - var(--role-cut)),
+      0 100%
+    ) !important;
+  }
+
+  /*
+    背景画像は台形の親要素いっぱいに表示
+  */
+  .role-slab__bg {
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
+
+    transform: scale(1.025) !important;
+    z-index: 0 !important;
+  }
+
+  .role-slab__overlay,
+  .role-slab:nth-child(even) .role-slab__overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    pointer-events: none;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, .04) 0%,
+        rgba(255, 255, 255, .12) 100%
+      ) !important;
+  }
+
+  /*
+    白いカード自体は台形にしない
+    現在の「左文章・右画像＋VIEW」を維持
+  */
+  .role-slab__body,
+  .role-slab:nth-child(even) .role-slab__body {
+    clip-path: none !important;
+    position: relative !important;
+    z-index: 4 !important;
+  }
+}
+
+
+/* =====================================================
+  SMALL SMARTPHONE
+===================================================== */
+
+@media (max-width: 450px) {
+
+  .roles {
+    --role-cut: 24px;
+    --role-gap: 3px;
+  }
+
+  .role-slab__inner,
+  .role-slab:nth-child(even) .role-slab__inner {
+    padding:
+      calc(var(--role-cut) + 18px)
+      3.5vw
+      calc(var(--role-cut) + 18px) !important;
+  }
+}
+    
+
   </style>
 </head>
 
@@ -2758,23 +3290,34 @@
           </div>
 
           <div class="captain__scene" id="captainScene">
-            <img class="captain__textimg" src="img/captain-text.png" alt="">
-            <img class="captain__person" src="img/captain__person.png" alt="代表取締役 岡田 信樹">
+            <!-- =====================================================
+              CAPTAIN画像出し分けエリア
 
-            <div class="captain__cards">
-              <div class="captain__card">
-                <b>新しいアイディアの天才（脳）</b>
-                <p>新しい発想を嫌がらず、まず試しに行く判断力。</p>
-              </div>
-              <div class="captain__card">
-                <b>本質を見抜く・未来を見通す（目）</b>
-                <p>目先だけでなく、先の勝ち筋まで読みに行く。</p>
-              </div>
-              <div class="captain__card">
-                <b>論理を追求した巧みな話術（口）</b>
-                <p>筋が通らない話は通さない。伝え方も武器。</p>
-              </div>
-            </div>
+              PC表示：
+              - img/captain__person-pc.png を表示
+              - 横幅80%
+              - 最大400px
+
+              スマホ表示：
+              - img/captain__person-sp.png を表示
+              - 横幅100%
+              - 最大なし
+
+              旧構成：
+              - captain-text.png
+              - captain__person.png
+              - captain__cards
+              は使用しない
+            ===================================================== -->
+            <picture class="captain__picture">
+              <source media="(max-width: 800px)" srcset="img/captain__person-sp.png">
+              <img
+                class="captain__person-img"
+                src="img/captain__person-pc.png"
+                alt="代表取締役 岡田 信樹の特徴"
+                loading="lazy"
+              >
+            </picture>
           </div>
         </div>
       </div>
@@ -2867,17 +3410,43 @@
         </div>
 
         <div class="roles__grid">
+          <!-- =====================================================
+            ROLES構成
+
+            PC：
+            - 既存の .role-slab__media を使用
+            - PCの見た目はなるべく維持
+
+            SP：
+            - .role-slab__media は非表示
+            - .role-slab__mobile-side を表示
+            - カード内を左：テキスト / 右：画像＋VIEWボタン にする
+          ===================================================== -->
+
           <article class="role-slab role-slab--sales reveal-up">
             <div class="role-slab__inner">
               <img class="role-slab__bg" src="img/sales.png" alt="" aria-hidden="true">
               <div class="role-slab__overlay" aria-hidden="true"></div>
+
+              <!-- PC用画像 -->
               <div class="role-slab__media">
                 <img class="role-slab__avatar" src="img/sales-man.png" alt="営業職のイメージ">
               </div>
+
               <div class="role-slab__body">
                 <span class="role-slab__tag">SALES</span>
-                <h3 class="role-slab__title">営業部<br class="sp-display">（戦闘員）</h3>
+
+                <h3 class="role-slab__title">営業部<br>（戦闘員）</h3>
+
                 <p class="role-slab__text">未知を切り開く役。腕っぷしではなく、提案力と推進力で道を作る。顧客課題を言語化し、前に進めるポジション。</p>
+
+                <!-- SP用：右側エリア -->
+                <div class="role-slab__mobile-side">
+                  <img class="role-slab__mobile-avatar" src="img/sales-man.png" alt="営業職のイメージ">
+                  <button class="role-slab__mobile-more plus" type="button" data-role="sales">VIEW</button>
+                </div>
+
+                <!-- PC用ボタン -->
                 <div class="role-slab__actions">
                   <button class="role-slab__more plus" type="button" data-role="sales">VIEW MORE</button>
                 </div>
@@ -2889,14 +3458,25 @@
             <div class="role-slab__inner">
               <img class="role-slab__bg" src="img/develop.png" alt="" aria-hidden="true">
               <div class="role-slab__overlay" aria-hidden="true"></div>
+
               <div class="role-slab__body">
                 <span class="role-slab__tag">DEVELOP</span>
-                <h3 class="role-slab__title">開発部<br class="sp-display">（コック）</h3>
+
+                <h3 class="role-slab__title">開発部<br>（コック）</h3>
+
                 <p class="role-slab__text">無いものなら作ればいい。業務を仕組みに変えて、船の速度を上げる役。改善の手を止めないのが仕事。</p>
+
+                <div class="role-slab__mobile-side">
+                  <img class="role-slab__mobile-avatar" src="img/develop-man.png" alt="開発職のイメージ">
+                  <button class="role-slab__mobile-more plus" type="button" data-role="dev">VIEW</button>
+                </div>
+
                 <div class="role-slab__actions">
                   <button class="role-slab__more plus" type="button" data-role="dev">VIEW MORE</button>
                 </div>
               </div>
+
+              <!-- PC用画像 -->
               <div class="role-slab__media">
                 <img class="role-slab__avatar" src="img/develop-man.png" alt="開発職のイメージ">
               </div>
@@ -2907,13 +3487,24 @@
             <div class="role-slab__inner">
               <img class="role-slab__bg" src="img/make.png" alt="" aria-hidden="true">
               <div class="role-slab__overlay" aria-hidden="true"></div>
+
+              <!-- PC用画像 -->
               <div class="role-slab__media">
                 <img class="role-slab__avatar" src="img/make-man.png" alt="製造職のイメージ">
               </div>
+
               <div class="role-slab__body">
                 <span class="role-slab__tag">MAKE</span>
-                <h3 class="role-slab__title">製造部<br class="sp-display">（船大工）</h3>
+
+                <h3 class="role-slab__title">製造部<br>（船大工）</h3>
+
                 <p class="role-slab__text">品質の要。手を動かし、当たり前を崩さず積み上げる。信頼を現場で作る、航海の土台そのもの。</p>
+
+                <div class="role-slab__mobile-side">
+                  <img class="role-slab__mobile-avatar" src="img/make-man.png" alt="製造職のイメージ">
+                  <button class="role-slab__mobile-more plus" type="button" data-role="make">VIEW</button>
+                </div>
+
                 <div class="role-slab__actions">
                   <button class="role-slab__more plus" type="button" data-role="make">VIEW MORE</button>
                 </div>
@@ -2925,14 +3516,25 @@
             <div class="role-slab__inner">
               <img class="role-slab__bg" src="img/ops.png" alt="" aria-hidden="true">
               <div class="role-slab__overlay" aria-hidden="true"></div>
+
               <div class="role-slab__body">
                 <span class="role-slab__tag">OPS</span>
-                <h3 class="role-slab__title">管理部<br class="sp-display">（航海士）</h3>
+
+                <h3 class="role-slab__title">管理部<br>（航海士）</h3>
+
                 <p class="role-slab__text">数字と仕組みで未来を読む役。船内の流れを整え、全体最適で進行を支える守護者ポジション。</p>
+
+                <div class="role-slab__mobile-side">
+                  <img class="role-slab__mobile-avatar" src="img/ops-man.png" alt="管理職のイメージ">
+                  <button class="role-slab__mobile-more plus" type="button" data-role="ops">VIEW</button>
+                </div>
+
                 <div class="role-slab__actions">
                   <button class="role-slab__more plus" type="button" data-role="ops">VIEW MORE</button>
                 </div>
               </div>
+
+              <!-- PC用画像 -->
               <div class="role-slab__media">
                 <img class="role-slab__avatar" src="img/ops-man.png" alt="管理職のイメージ">
               </div>
