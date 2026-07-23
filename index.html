@@ -2061,10 +2061,6 @@
         font-size: 12px;
       }
 
-      .hero__stage {
-        height: 125vw;
-      }
-
 
       .floating-entry {
         width: 165px;
@@ -2075,6 +2071,8 @@
         width: 82px;
         height: 82px;
         font-size: 54px;
+        display: grid;
+        place-items: center;
       }
 
       .captain__cards {
@@ -2685,7 +2683,7 @@
         font-size: 15px;
       }
     }
-  
+
 
     /* =====================================================
       2026 FINAL UPDATE
@@ -2757,6 +2755,7 @@
     ------------------------- */
 
     @media (min-width: 801px) and (max-width: 1100px) {
+
       .role-slab__inner,
       .role-slab:nth-child(even) .role-slab__inner {
         padding-inline: 5vw !important;
@@ -2848,7 +2847,7 @@
       }
 
       /* 背景同士は斜めの深さ分だけ完全に重ねる */
-      .role-slab + .role-slab {
+      .role-slab+.role-slab {
         margin-top: calc(var(--role-cut) * -1) !important;
       }
 
@@ -2857,9 +2856,7 @@
         position: relative !important;
         min-height: auto !important;
         padding:
-          calc(var(--role-cut) + 22px)
-          0
-          calc(var(--role-cut) + 22px) !important;
+          calc(var(--role-cut) + 22px) 0 calc(var(--role-cut) + 22px) !important;
         display: block !important;
         overflow: hidden !important;
         isolation: isolate;
@@ -2867,22 +2864,18 @@
 
       /* 1・3枚目 */
       .role-slab:nth-child(odd) .role-slab__inner {
-        clip-path: polygon(
-          0 var(--role-cut),
-          100% 0,
-          100% 100%,
-          0 calc(100% - var(--role-cut))
-        ) !important;
+        clip-path: polygon(0 var(--role-cut),
+            100% 0,
+            100% 100%,
+            0 calc(100% - var(--role-cut))) !important;
       }
 
       /* 2・4枚目：前後の斜辺と完全に平行 */
       .role-slab:nth-child(even) .role-slab__inner {
-        clip-path: polygon(
-          0 0,
-          100% var(--role-cut),
-          100% calc(100% - var(--role-cut)),
-          0 100%
-        ) !important;
+        clip-path: polygon(0 0,
+            100% var(--role-cut),
+            100% calc(100% - var(--role-cut)),
+            0 100%) !important;
       }
 
       /*
@@ -2902,21 +2895,17 @@
       }
 
       .role-slab:nth-child(even)::before {
-        clip-path: polygon(
-          0 0,
-          100% var(--role-cut),
-          100% calc(var(--role-cut) + var(--role-line)),
-          0 var(--role-line)
-        );
+        clip-path: polygon(0 0,
+            100% var(--role-cut),
+            100% calc(var(--role-cut) + var(--role-line)),
+            0 var(--role-line));
       }
 
       .role-slab:nth-child(odd):not(:first-child)::before {
-        clip-path: polygon(
-          0 var(--role-cut),
-          100% 0,
-          100% var(--role-line),
-          0 calc(var(--role-cut) + var(--role-line))
-        );
+        clip-path: polygon(0 var(--role-cut),
+            100% 0,
+            100% var(--role-line),
+            0 calc(var(--role-cut) + var(--role-line)));
       }
 
       .role-slab__bg {
@@ -2935,11 +2924,9 @@
         position: absolute !important;
         inset: 0 !important;
         z-index: 1 !important;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, .06) 0%,
-          rgba(255, 255, 255, .14) 100%
-        ) !important;
+        background: linear-gradient(180deg,
+            rgba(255, 255, 255, .06) 0%,
+            rgba(255, 255, 255, .14) 100%) !important;
         pointer-events: none;
       }
 
@@ -2957,10 +2944,8 @@
       .role-slab:nth-child(even) .role-slab__body {
         position: relative !important;
         z-index: 4 !important;
-        width: min(
-          calc(100% - var(--role-card-gutter) - var(--role-card-gutter)),
-          440px
-        ) !important;
+        width: min(calc(100% - var(--role-card-gutter) - var(--role-card-gutter)),
+            440px) !important;
         max-width: none !important;
         min-height: 0 !important;
         margin: 0 auto !important;
@@ -3087,17 +3072,13 @@
       .role-slab__inner,
       .role-slab:nth-child(even) .role-slab__inner {
         padding:
-          calc(var(--role-cut) + 18px)
-          0
-          calc(var(--role-cut) + 18px) !important;
+          calc(var(--role-cut) + 18px) 0 calc(var(--role-cut) + 18px) !important;
       }
 
       .role-slab__body,
       .role-slab:nth-child(even) .role-slab__body {
-        width: min(
-          calc(100% - var(--role-card-gutter) - var(--role-card-gutter)),
-          440px
-        ) !important;
+        width: min(calc(100% - var(--role-card-gutter) - var(--role-card-gutter)),
+            440px) !important;
         padding: 20px 16px !important;
         grid-template-columns: minmax(0, 1fr) minmax(96px, 42%) !important;
         column-gap: 10px !important;
@@ -3131,6 +3112,7 @@
     ------------------------- */
 
     @media (max-width: 360px) {
+
       .role-slab__body,
       .role-slab:nth-child(even) .role-slab__body {
         padding: 18px 14px !important;
@@ -3155,8 +3137,6 @@
         font-size: 15px;
       }
     }
-
-
   </style>
 </head>
 
@@ -3251,12 +3231,7 @@
             ===================================================== -->
             <picture class="captain__picture">
               <source media="(max-width: 800px)" srcset="img/captain__person-sp.png">
-              <img
-                class="captain__person-img"
-                src="img/captain__person-pc.png"
-                alt="代表取締役 岡田 信樹の特徴"
-                loading="lazy"
-              >
+              <img class="captain__person-img" src="img/captain__person-pc.png" alt="代表取締役 岡田 信樹の特徴" loading="lazy">
             </picture>
           </div>
         </div>
