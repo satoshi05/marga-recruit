@@ -2688,21 +2688,28 @@
   
 
     /* =====================================================
-      2026 update: CAPTAIN画像出し分け + ROLES SPカード内完結
+      2026 FINAL UPDATE
 
       CAPTAIN：
       - PC：img/captain__person-pc.png / width 80% / max 400px
       - SP：img/captain__person-sp.png / width 100%
 
       ROLES：
-      - PCは既存レイアウト維持
-      - SPのみカード内で左テキスト・右画像＋VIEWに変更
+      - PC：既存レイアウトを維持
+      - Tablet：白カードを縮小して人物PNGとの重なりを軽減
+      - SP：左にタイトル＋説明、右に人物画像＋VIEW
+      - SP背景：PCと同じ交互の斜めスライス
+      - 境界線：疑似要素で均一な白線を描画
+      - SP白カード：端末幅に関係なく同一ルールの左右余白
     ===================================================== */
+
+    /* -------------------------
+      CAPTAIN
+    ------------------------- */
 
     .captain__picture {
       display: block;
       width: 80%;
-      max-width: 850px;
       margin: 0 auto;
       position: relative;
       z-index: 4;
@@ -2739,9 +2746,61 @@
       display: none !important;
     }
 
+    /* SP専用の人物画像＋VIEWエリアはPCで非表示 */
     .role-slab__mobile-side {
       display: none;
     }
+
+    /* -------------------------
+      TABLET：801px〜1100px
+      白カードを小さくして人物PNGの表示領域を確保
+    ------------------------- */
+
+    @media (min-width: 801px) and (max-width: 1100px) {
+      .role-slab__inner,
+      .role-slab:nth-child(even) .role-slab__inner {
+        padding-inline: 5vw !important;
+        gap: clamp(18px, 2.6vw, 34px) !important;
+      }
+
+      .role-slab__body,
+      .role-slab:nth-child(even) .role-slab__body {
+        width: clamp(280px, 34vw, 350px) !important;
+        max-width: 350px !important;
+        flex: 0 0 auto;
+        padding: 20px 22px 22px !important;
+      }
+
+      .role-slab__title {
+        font-size: clamp(22px, 2.6vw, 28px) !important;
+      }
+
+      .role-slab__text {
+        font-size: clamp(12px, 1.35vw, 14px) !important;
+        line-height: 1.7 !important;
+      }
+
+      .role-slab__more {
+        min-width: 164px !important;
+        padding: 14px 24px !important;
+        font-size: 15px !important;
+      }
+
+      .role-slab__media,
+      .role-slab:nth-child(even) .role-slab__media {
+        width: 42vw !important;
+        flex: 0 0 42vw;
+      }
+
+      .role-slab__avatar {
+        width: 40vw !important;
+        top: -11vw !important;
+      }
+    }
+
+    /* -------------------------
+      SMARTPHONE：800px以下
+    ------------------------- */
 
     @media (max-width: 800px) {
       .captain__scene:has(.captain__picture) {
@@ -2759,33 +2818,105 @@
       }
 
       .roles {
-        overflow: hidden;
+        /* 斜めの深さ */
+        --role-cut: clamp(22px, 5.5vw, 34px);
+
+        /* 斜め境界の白線 */
+        --role-line: 4px;
+
+        /* 全スマホ共通の白カード左右余白 */
+        --role-card-gutter: clamp(24px, 7vw, 42px);
+
+        overflow: hidden !important;
         background: #fff;
       }
 
       .roles__grid {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        display: grid;
-        gap: 0;
-        overflow: hidden;
+        width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        display: grid !important;
+        gap: 0 !important;
+        overflow: visible !important;
+        background: #fff;
       }
 
-      .role-slab,
+      .role-slab {
+        position: relative !important;
+        overflow: visible !important;
+        background: transparent !important;
+        isolation: isolate;
+      }
+
+      /* 背景同士は斜めの深さ分だけ完全に重ねる */
       .role-slab + .role-slab {
-        margin-top: 0 !important;
-        overflow: hidden !important;
+        margin-top: calc(var(--role-cut) * -1) !important;
       }
 
       .role-slab__inner,
       .role-slab:nth-child(even) .role-slab__inner {
-        position: relative;
+        position: relative !important;
         min-height: auto !important;
-        padding: 34px 4vw !important;
+        padding:
+          calc(var(--role-cut) + 22px)
+          0
+          calc(var(--role-cut) + 22px) !important;
         display: block !important;
-        clip-path: none !important;
         overflow: hidden !important;
         isolation: isolate;
+      }
+
+      /* 1・3枚目 */
+      .role-slab:nth-child(odd) .role-slab__inner {
+        clip-path: polygon(
+          0 var(--role-cut),
+          100% 0,
+          100% 100%,
+          0 calc(100% - var(--role-cut))
+        ) !important;
+      }
+
+      /* 2・4枚目：前後の斜辺と完全に平行 */
+      .role-slab:nth-child(even) .role-slab__inner {
+        clip-path: polygon(
+          0 0,
+          100% var(--role-cut),
+          100% calc(100% - var(--role-cut)),
+          0 100%
+        ) !important;
+      }
+
+      /*
+        2枚目以降の上端に均一な白線を描画。
+        背景同士の隙間ではなく、平行な白い帯を重ねる。
+      */
+      .role-slab:not(:first-child)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: calc(var(--role-cut) + var(--role-line));
+        background: #fff;
+        pointer-events: none;
+        z-index: 8;
+      }
+
+      .role-slab:nth-child(even)::before {
+        clip-path: polygon(
+          0 0,
+          100% var(--role-cut),
+          100% calc(var(--role-cut) + var(--role-line)),
+          0 var(--role-line)
+        );
+      }
+
+      .role-slab:nth-child(odd):not(:first-child)::before {
+        clip-path: polygon(
+          0 var(--role-cut),
+          100% 0,
+          100% var(--role-line),
+          0 calc(var(--role-cut) + var(--role-line))
+        );
       }
 
       .role-slab__bg {
@@ -2796,7 +2927,7 @@
         height: 100% !important;
         object-fit: cover !important;
         object-position: center !important;
-        transform: none !important;
+        transform: scale(1.025) !important;
       }
 
       .role-slab__overlay,
@@ -2804,30 +2935,44 @@
         position: absolute !important;
         inset: 0 !important;
         z-index: 1 !important;
-        background: linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.16) 100%) !important;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, .06) 0%,
+          rgba(255, 255, 255, .14) 100%
+        ) !important;
         pointer-events: none;
       }
 
+      /* PC用人物画像はSPで非表示 */
       .role-slab__media,
       .role-slab:nth-child(even) .role-slab__media {
         display: none !important;
       }
 
+      /*
+        白カード幅を全スマホで同じ計算に統一。
+        小さいスマホだけ不自然に横へ広がらない。
+      */
       .role-slab__body,
       .role-slab:nth-child(even) .role-slab__body {
         position: relative !important;
         z-index: 4 !important;
-        width: min(100%, 420px) !important;
-        max-width: 420px !important;
+        width: min(
+          calc(100% - var(--role-card-gutter) - var(--role-card-gutter)),
+          440px
+        ) !important;
+        max-width: none !important;
         min-height: 0 !important;
         margin: 0 auto !important;
         padding: 22px 18px 20px !important;
         border-radius: 28px !important;
-        background: rgba(255, 255, 255, .88) !important;
+        clip-path: none !important;
+        background: rgba(255, 255, 255, .90) !important;
         backdrop-filter: blur(10px);
         box-shadow: 0 16px 36px rgba(15, 23, 42, .14) !important;
+
         display: grid !important;
-        grid-template-columns: minmax(0, 1fr) 46% !important;
+        grid-template-columns: minmax(0, 1fr) minmax(100px, 42%) !important;
         grid-template-areas:
           "tag side"
           "title side"
@@ -2850,7 +2995,7 @@
         font-size: 11px !important;
         line-height: 1 !important;
         border-radius: 999px !important;
-        background: rgba(255,255,255,.94) !important;
+        background: rgba(255, 255, 255, .96) !important;
       }
 
       .role-slab__title {
@@ -2873,10 +3018,12 @@
         text-align: left !important;
       }
 
+      /* PC用ボタンはSPで非表示 */
       .role-slab__actions {
         display: none !important;
       }
 
+      /* SP右側：人物画像＋VIEW */
       .role-slab__mobile-side {
         grid-area: side !important;
         display: flex !important;
@@ -2921,27 +3068,44 @@
       }
     }
 
+    /* -------------------------
+      SMALL SMARTPHONE：450px以下
+      左右余白の計算は800px以下と同じまま維持
+    ------------------------- */
+
     @media (max-width: 450px) {
       .captain__scene:has(.captain__picture) {
         margin-top: -12vw !important;
       }
 
+      .roles {
+        --role-cut: 24px;
+        --role-line: 3px;
+        --role-card-gutter: 24px;
+      }
+
       .role-slab__inner,
       .role-slab:nth-child(even) .role-slab__inner {
-        padding: 28px 3.5vw !important;
+        padding:
+          calc(var(--role-cut) + 18px)
+          0
+          calc(var(--role-cut) + 18px) !important;
       }
 
       .role-slab__body,
       .role-slab:nth-child(even) .role-slab__body {
-        width: min(100%, 360px) !important;
-        padding: 20px 16px 20px !important;
-        grid-template-columns: minmax(0, 1fr) 45% !important;
+        width: min(
+          calc(100% - var(--role-card-gutter) - var(--role-card-gutter)),
+          440px
+        ) !important;
+        padding: 20px 16px !important;
+        grid-template-columns: minmax(0, 1fr) minmax(96px, 42%) !important;
         column-gap: 10px !important;
         border-radius: 26px !important;
       }
 
       .role-slab__title {
-        font-size: clamp(24px, 7.8vw, 31px) !important;
+        font-size: clamp(23px, 7.8vw, 31px) !important;
       }
 
       .role-slab__text {
@@ -2950,8 +3114,8 @@
       }
 
       .role-slab__mobile-avatar {
-        max-width: 132px;
-        max-height: 136px;
+        max-width: 128px;
+        max-height: 134px;
       }
 
       .role-slab__mobile-more {
@@ -2961,15 +3125,20 @@
       }
     }
 
-    @media (max-width: 370px) {
+    /* -------------------------
+      VERY SMALL：360px以下
+      外側余白は24pxのまま。中身だけ微調整。
+    ------------------------- */
+
+    @media (max-width: 360px) {
       .role-slab__body,
       .role-slab:nth-child(even) .role-slab__body {
-        grid-template-columns: minmax(0, 1fr) 42% !important;
         padding: 18px 14px !important;
+        grid-template-columns: minmax(0, 1fr) 96px !important;
       }
 
       .role-slab__title {
-        font-size: 23px !important;
+        font-size: 22px !important;
       }
 
       .role-slab__text {
@@ -2977,7 +3146,7 @@
       }
 
       .role-slab__mobile-avatar {
-        max-width: 112px;
+        max-width: 106px;
       }
 
       .role-slab__mobile-more {
@@ -2986,236 +3155,7 @@
         font-size: 15px;
       }
     }
-/* =====================================================
-  ROLES 最終調整
 
-  1. PCと同じ台形構造をスマホにも適用
-  2. 台形同士の白線を左右均一にする
-  3. タブレット時は白いカードを縮めて人物PNGとの重なりを防ぐ
-
-  ※以前追加したスマホ用の斜めスライスコードは削除し、
-    このコードだけをCSSの一番最後に置いてください。
-===================================================== */
-
-
-/* =====================================================
-  TABLET
-  801px〜1100px
-
-  PCレイアウトを維持したまま、
-  白い説明カードだけ小さくする
-===================================================== */
-
-@media (min-width: 801px) and (max-width: 1100px) {
-
-  .role-slab__inner,
-  .role-slab:nth-child(even) .role-slab__inner {
-    padding-inline: 7vw;
-    gap: 3vw;
-  }
-
-  /* 白いカードを縮小 */
-  .role-slab__body,
-  .role-slab:nth-child(even) .role-slab__body {
-    width: clamp(300px, 37vw, 380px);
-    max-width: 380px;
-    flex: 0 0 auto;
-    padding: 22px 24px 24px;
-  }
-
-  .role-slab__title {
-    font-size: clamp(23px, 2.7vw, 30px);
-  }
-
-  .role-slab__text {
-    font-size: clamp(13px, 1.45vw, 15px);
-    line-height: 1.7;
-  }
-
-  .role-slab__more {
-    min-width: 180px;
-    padding: 15px 28px;
-    font-size: 15px;
-  }
-
-  /* 人物画像側の領域を確保 */
-  .role-slab__media,
-  .role-slab:nth-child(even) .role-slab__media {
-    width: 43vw;
-    flex: 0 0 43vw;
-  }
-
-  .role-slab__avatar {
-    width: 42vw;
-    top: -12vw;
-  }
-}
-
-
-/* =====================================================
-  SMARTPHONE
-  PCとまったく同じ台形の組み合わせを使用
-
-  --role-cut：斜めの深さ
-  --role-gap：白線の太さ
-===================================================== */
-
-@media (max-width: 800px) {
-
-  .roles {
-    --role-cut: clamp(22px, 6vw, 34px);
-    --role-gap: 4px;
-
-    background: #fff;
-    overflow: hidden;
-  }
-
-  .roles__grid {
-    background: #fff;
-    overflow: visible !important;
-  }
-
-  .role-slab {
-    position: relative;
-    overflow: visible !important;
-    background: #fff;
-  }
-
-  /*
-    前の背景と次の背景を、
-    斜めの深さ分だけ重ねる。
-
-    最後に role-gap 分だけ戻すことで、
-    左右均一な白線になる。
-  */
-  .role-slab + .role-slab {
-    margin-top:
-      calc(
-        (var(--role-cut) * -1) + var(--role-gap)
-      ) !important;
-  }
-
-  /*
-    カードが台形のカット部分に入らないように、
-    上下に role-cut 分の余白を確保
-  */
-  .role-slab__inner,
-  .role-slab:nth-child(even) .role-slab__inner {
-    position: relative !important;
-    min-height: auto !important;
-
-    padding:
-      calc(var(--role-cut) + 22px)
-      4vw
-      calc(var(--role-cut) + 22px) !important;
-
-    overflow: hidden !important;
-    isolation: isolate;
-  }
-
-  /*
-    1・3番目
-
-    左上が低い
-    右上が高い
-
-    左下が高い
-    右下が低い
-  */
-  .role-slab:nth-child(odd) .role-slab__inner {
-    clip-path: polygon(
-      0 var(--role-cut),
-      100% 0,
-      100% 100%,
-      0 calc(100% - var(--role-cut))
-    ) !important;
-  }
-
-  /*
-    2・4番目
-
-    左上が高い
-    右上が低い
-
-    左下が低い
-    右下が高い
-
-    前後の台形と完全に平行になる
-  */
-  .role-slab:nth-child(even) .role-slab__inner {
-    clip-path: polygon(
-      0 0,
-      100% var(--role-cut),
-      100% calc(100% - var(--role-cut)),
-      0 100%
-    ) !important;
-  }
-
-  /*
-    背景画像は台形の親要素いっぱいに表示
-  */
-  .role-slab__bg {
-    position: absolute !important;
-    inset: 0 !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    object-fit: cover !important;
-    object-position: center !important;
-
-    transform: scale(1.025) !important;
-    z-index: 0 !important;
-  }
-
-  .role-slab__overlay,
-  .role-slab:nth-child(even) .role-slab__overlay {
-    position: absolute !important;
-    inset: 0 !important;
-    z-index: 1 !important;
-    pointer-events: none;
-
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, .04) 0%,
-        rgba(255, 255, 255, .12) 100%
-      ) !important;
-  }
-
-  /*
-    白いカード自体は台形にしない
-    現在の「左文章・右画像＋VIEW」を維持
-  */
-  .role-slab__body,
-  .role-slab:nth-child(even) .role-slab__body {
-    clip-path: none !important;
-    position: relative !important;
-    z-index: 4 !important;
-  }
-}
-
-
-/* =====================================================
-  SMALL SMARTPHONE
-===================================================== */
-
-@media (max-width: 450px) {
-
-  .roles {
-    --role-cut: 24px;
-    --role-gap: 3px;
-  }
-
-  .role-slab__inner,
-  .role-slab:nth-child(even) .role-slab__inner {
-    padding:
-      calc(var(--role-cut) + 18px)
-      3.5vw
-      calc(var(--role-cut) + 18px) !important;
-  }
-}
-    
 
   </style>
 </head>
